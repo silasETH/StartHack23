@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:async';
+import 'dart:typed_data';
 
 import 'package:path_provider/path_provider.dart';
 
@@ -33,14 +34,14 @@ class UserDataService {
   {
     try{
       final file = await localFile;
-      var io = await IOSource.createIOSource(file.openRead());
-      String id = String.fromCharCodes(io.next());
+      var io = IOSource(file);
+      String id = String.fromCharCodes([io.next(), io.next(), io.next(), io.next()]);
       if(id != "TRSH"){
         print("file id doesn't match");
         return;
       }
-      int version = (io.next())[0];
-      int length = (io.next())[0];
+      int version = io.next();
+      int length = io.next();
       for(var i = 0; i < length; i++){
         cart.add(await CartItem.load(io, version));
       }
@@ -122,30 +123,27 @@ class CartItem {
   static Future<CartItem> load(IOSource io, int version) async
   {
     CartItem result = CartItem();
-    List<int> values = io.next();
-    result.type = CartItemType.values[values[0]];
-    result.bigItem = values[1] == 0 ? false : true;
-    result.weightClass = values[2];
+    result.type = CartItemType.values[io.next()];
+    result.bigItem = io.next() == 0 ? false : true;
+    result.weightClass = io.next();
     return result;
   }
 
   void save(IOSink io) {
-    io.add([type.index, bigItem ? 1 : 9, weightClass]);
+    io.add([type.index, bigItem ? 1 : 0, weightClass]);
   }
 }
 class IOSource
 {
-  List<List<int>> data = [];
+  late Uint8List data;
   int index = 0;
 
-  static Future<IOSource> createIOSource(Stream<List<int>> stream) async
+  IOSource(File file)
   {
-    IOSource result = IOSource();
-    result.data = await stream.toList();
-    return result;
+    data = file.readAsBytesSync();
   }
 
-  List<int> next()
+  int next()
   {
     return data[index++];
   }
