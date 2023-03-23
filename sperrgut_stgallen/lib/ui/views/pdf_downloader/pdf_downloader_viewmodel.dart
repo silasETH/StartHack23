@@ -65,15 +65,16 @@ class PdfDownloaderViewModel extends BaseViewModel {
                           pw.Text("mehr als 3 Sitzplätze",
                               style: const pw.TextStyle(fontSize: 17)),
                           pw.SizedBox(height: 10),
-                          /*pw.Container(
-                            width: 160,
-                            height: 50,
-                            color: PdfColor.fromHex("#8cb9e4"),
-                            child: pw.Text(
-                                "1. Etikette an gestrichelter Linie abtrennen \n2. Gut sichtbar an Sperrgut befestigen",
-                            style: pw.TextStyle(color: PdfColors.white)
-                            )
-                          )*/
+                          pw.Container(
+                              width: 180,
+                              height: 46,
+                              padding: pw.EdgeInsets.all(10),
+                              decoration: pw.BoxDecoration(
+                                  border: pw.Border.all(
+                                      width: 1, color: PdfColors.black)),
+                              child: pw.Text(
+                                  "1. Etikette zuschneiden \n2. Gut sichtbar befestigen",
+                                  style: pw.TextStyle(color: PdfColors.black)))
                         ]),
                     pw.Column(
                         crossAxisAlignment: pw.CrossAxisAlignment.center,
@@ -98,9 +99,9 @@ class PdfDownloaderViewModel extends BaseViewModel {
                               style: const pw.TextStyle(fontSize: 18))
                         ])
                   ]),
-              pw.SizedBox(height:10),
+              pw.SizedBox(height: 10),
               pw.Divider(),
-              pw.SizedBox(height:10),
+              pw.SizedBox(height: 10),
               pw.Row(children: [
                 pw.SizedBox(width: 19, height: 19, child: pw.Image(sgLogo)),
                 pw.SizedBox(width: 9),
@@ -126,15 +127,6 @@ class PdfDownloaderViewModel extends BaseViewModel {
                           pw.Text("mehr als 3 Sitzplätze",
                               style: const pw.TextStyle(fontSize: 17)),
                           pw.SizedBox(height: 10),
-                          /*pw.Container(
-                            width: 160,
-                            height: 50,
-                            color: PdfColor.fromHex("#8cb9e4"),
-                            child: pw.Text(
-                                "1. Etikette an gestrichelter Linie abtrennen \n2. Gut sichtbar an Sperrgut befestigen",
-                            style: pw.TextStyle(color: PdfColors.white)
-                            )
-                          )*/
                         ]),
                     pw.Column(
                         crossAxisAlignment: pw.CrossAxisAlignment.center,
@@ -159,80 +151,15 @@ class PdfDownloaderViewModel extends BaseViewModel {
                               style: const pw.TextStyle(fontSize: 18))
                         ])
                   ]),
-              pw.SizedBox(height:10),
-              pw.Divider(),
-              pw.SizedBox(height:10),
-              pw.Row(children: [
-                pw.SizedBox(width: 19, height: 19, child: pw.Image(sgLogo)),
-                pw.SizedBox(width: 9),
-                pw.Text(
-                  "Entsorgung Stadt St. Gallen",
-                  style: pw.TextStyle(
-                      fontSize: 19, fontWeight: pw.FontWeight.bold),
-                )
-              ]),
               pw.SizedBox(height: 10),
-              pw.Row(
-                  mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: pw.CrossAxisAlignment.start,
-                  children: [
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.start,
-                        children: [
-                          pw.SizedBox(height: 16),
-                          pw.Text("Sofa",
-                              style: pw.TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: pw.FontWeight.bold)),
-                          pw.Text("mehr als 3 Sitzplätze",
-                              style: const pw.TextStyle(fontSize: 17)),
-                          pw.SizedBox(height: 10),
-                          /*pw.Container(
-                            width: 160,
-                            height: 50,
-                            color: PdfColor.fromHex("#8cb9e4"),
-                            child: pw.Text(
-                                "1. Etikette an gestrichelter Linie abtrennen \n2. Gut sichtbar an Sperrgut befestigen",
-                            style: pw.TextStyle(color: PdfColors.white)
-                            )
-                          )*/
-                        ]),
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.center,
-                        children: [
-                          pw.Text("2",
-                              style: pw.TextStyle(
-                                  fontSize: 72,
-                                  fontWeight: pw.FontWeight.bold)),
-                          pw.Text("Marken",
-                              style: const pw.TextStyle(fontSize: 16))
-                        ]),
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.center,
-                        children: [
-                          pw.SizedBox(
-                            width: 110,
-                            height: 110,
-                            child: pw.Image(qrImage),
-                          ),
-                          pw.SizedBox(height: 7),
-                          pw.Text("31415926",
-                              style: const pw.TextStyle(fontSize: 18))
-                        ])
-                  ]),
+              pw.Divider(),
+              pw.SizedBox(height: 10),
+              
+              makeItem(sgLogo, qrImage, "Sofa", "mehr als zwei Sitzplätze", 2)
+
             ],
           ); // Center
         })); // Page
-
-    /*
-    pw.Row(
-      children: [
-        pw.Text("Sperrgut"),
-        Text("Sofa"),
-        pw.Expanded(child: pw.SizedBox()),
-        pw.Text("2"),
-      ],
-    ),*/
 
     final output = await getTemporaryDirectory();
     final file = File("${output.path}/example.pdf");
@@ -241,5 +168,55 @@ class PdfDownloaderViewModel extends BaseViewModel {
     return file.path;
     // print(file.path);
     // await OpenFilex.open(file.path);
+  }
+
+  pw.Widget makeItem(pw.MemoryImage sgLogo, pw.MemoryImage qrImage, String str1, String str2, int nrOfStamps) {
+
+    return pw.Column(children: [
+      pw.Row(children: [
+        pw.SizedBox(width: 19, height: 19, child: pw.Image(sgLogo)),
+        pw.SizedBox(width: 9),
+        pw.Text(
+          "Entsorgung Stadt St. Gallen",
+          style: pw.TextStyle(fontSize: 19, fontWeight: pw.FontWeight.bold),
+        )
+      ]),
+      pw.SizedBox(height: 10),
+      pw.Row(
+          mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: pw.CrossAxisAlignment.start,
+          children: [
+            pw.Column(
+                crossAxisAlignment: pw.CrossAxisAlignment.start,
+                children: [
+                  pw.SizedBox(height: 16),
+                  pw.Text(str1,
+                      style: pw.TextStyle(
+                          fontSize: 18, fontWeight: pw.FontWeight.bold)),
+                  pw.Text(str2,
+                      style: const pw.TextStyle(fontSize: 17)),
+                  pw.SizedBox(height: 10),
+                ]),
+            pw.Column(
+                crossAxisAlignment: pw.CrossAxisAlignment.center,
+                children: [
+                  pw.Text(nrOfStamps.toString(),
+                      style: pw.TextStyle(
+                          fontSize: 72, fontWeight: pw.FontWeight.bold)),
+                  pw.Text("Marken", style: const pw.TextStyle(fontSize: 16))
+                ]),
+            pw.Column(
+                crossAxisAlignment: pw.CrossAxisAlignment.center,
+                children: [
+                  pw.SizedBox(
+                    width: 110,
+                    height: 110,
+                    child: pw.Image(qrImage),
+                  ),
+                  pw.SizedBox(height: 7),
+                  pw.Text("31415926", style: const pw.TextStyle(fontSize: 18))
+                ])
+          ])
+    ]);
   }
 }
