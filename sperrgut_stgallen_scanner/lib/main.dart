@@ -1,39 +1,78 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:sperrgut_stgallen_scanner/app/app.bottomsheets.dart';
-import 'package:sperrgut_stgallen_scanner/app/app.dialogs.dart';
-import 'package:sperrgut_stgallen_scanner/app/app.locator.dart';
-import 'package:sperrgut_stgallen_scanner/app/app.router.dart';
-import 'package:sperrgut_stgallen_scanner/ui/common/app_colors.dart';
-import 'package:stacked_services/stacked_services.dart';
+import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 
-void main() {
-  setupLocator();
-  setupDialogUi();
-  setupBottomSheetUi();
+import 'vision_detector_views/camera_view.dart';
 
-  runApp(const MyApp());
+List<CameraDescription> cameras = [];
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  cameras = await availableCameras();
+
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: Theme.of(context).copyWith(
-        primaryColor: kcBackgroundColor,
-        focusColor: kcPrimaryColor,
-        textTheme: Theme.of(context).textTheme.apply(
-              bodyColor: Colors.black,
-            ),
-      ),
-      initialRoute: Routes.startupView,
-      onGenerateRoute: StackedRouter().onGenerateRoute,
-      navigatorKey: StackedService.navigatorKey,
-      navigatorObservers: [
-        StackedService.routeObserver,
-      ],
+      debugShowCheckedModeBanner: false,
+      home: Home(),
     );
+  }
+}
+
+class Home extends StatefulWidget {
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  final TextRecognizer _textRecognizer =
+      TextRecognizer(script: TextRecognitionScript.chinese);
+  bool _canProcess = true;
+  bool _isBusy = false;
+  CustomPaint? _customPaint;
+  int code = 0;
+
+  @override
+  void dispose() async {
+    _canProcess = false;
+    _textRecognizer.close();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(children: [
+      CameraView(
+        title: 'Sperrgut-Scanner',
+        customPaint: _customPaint,
+        onImage: (inputImage) {
+          processImage(inputImage);
+        },
+      ),
+      if (code != 0)
+        Center(
+          child: Badge(
+            label: Text("Recognized code: ${code}"),
+          ),
+        )
+    ]);
+  }
+
+  Future<void> processImage(InputImage inputImage) async {
+    if (!_canProcess) return;
+    if (_isBusy) return;
+    _isBusy = true;
+    final recognizedText = await _textRecognizer.processImage(inputImage);
+    if (int.tryParse(recognizedText.text) != null) {
+      code = int.parse(recognizedText.text);
+    }
+    _isBusy = false;
+    if (mounted) {
+      setState(() {});
+    }
   }
 }
