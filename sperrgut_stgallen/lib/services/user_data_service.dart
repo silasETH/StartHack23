@@ -10,7 +10,7 @@ class UserDataService {
   Future<File> get localFile async {
     final directory = await getApplicationDocumentsDirectory();
     final path = '${directory.path}/userData.data';
-    return File('$path/userData.dat');
+    return File(path);
   }
 
   void saveToDisk() async
