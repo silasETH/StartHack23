@@ -23,6 +23,26 @@ class CartView extends StackedView<CartViewModel> {
       ),
       body: Column(
         children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(8.0, 16, 0, 0),
+                child: Text(
+                  "Bezeichnung",
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 16, 8, 0),
+                child: Text(
+                  "Marken",
+                  style: Theme.of(context).textTheme.titleMedium,
+                  textAlign: TextAlign.end,
+                ),
+              ),
+            ],
+          ),
           Expanded(
             child: CartItems(
               cartItemTexts: viewModel.cartItemTexts,
