@@ -57,8 +57,12 @@ class TypeSelectView extends StackedView<TypeSelectViewModel> {
               ],
             ),
           ),
+          const Expanded(
+            child: SizedBox(),
+          ),
           Padding(
-            padding: const EdgeInsets.all(mediumSize),
+            padding: const EdgeInsets.fromLTRB(
+                mediumSize, 0, mediumSize, mediumSize),
             child: Card(
               elevation: 0,
               shape: const RoundedRectangleBorder(
