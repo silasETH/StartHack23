@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:async';
 import 'dart:typed_data';
+import 'dart:math';
 
 import 'package:path_provider/path_provider.dart';
 
@@ -56,8 +57,9 @@ class UserDataService {
       }
       if(version >= 1){
         int length = io.nextUint8();
-        for(var i = 0; i < length; i++)
+        for(var i = 0; i < length; i++) {
           receipts.add(await Receipt.load(io, version));
+        }
       }
       assert(cart.length == length);
     }catch(_){}
@@ -83,7 +85,7 @@ class UserDataService {
     if(currentCartItem.type == CartItemType.trashBag) {
       currentCartItem.bigItem = false;
     }
-    currentCartItem.code = CartItem.itemToCode(currentCartItem);
+    currentCartItem.code = CartItem.itemToRandomCode(currentCartItem);
     cart.add(currentCartItem);
     currentCartItem = CartItem();
     saveToDisk();
@@ -178,6 +180,19 @@ class CartItem {
     return result;
   }
 
+  static List<int> itemToRandomCode(CartItem item)
+  {
+    final random = Random();
+    List<int> result = [item.type.index, item.bigItem ? 1 : 0, item.weightClass];
+    if(result[0] < 2 && random.nextInt(2) == 0) {
+      result[0] += 4;
+    }
+    result[1] += random.nextInt(3) * 2;
+    result[2] += random.nextInt(2) * 3;
+    result = result.expand((e) => [e, numberPair[e]]).map((e) => forbiddenToSanitized[e]).toList();
+    return result;
+  }
+
   static bool isCodeValid(List<int> code)
   {
     if(code.length != 6) {
@@ -210,6 +225,8 @@ class CartItem {
   {
     return "${code[0]}${code[1]}${code[2]} ${code[3]}${code[4]}${code[5]}";
   }
+
+
 }
 
 class Receipt {
