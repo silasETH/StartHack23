@@ -65,7 +65,7 @@ class CartViewModel extends BaseViewModel {
 
   void pay() {
     _userDataService.createNewCart();
-    home();
+    _navigationService.navigateToPdfDownloaderView();
   }
 
   void salePoints() {
