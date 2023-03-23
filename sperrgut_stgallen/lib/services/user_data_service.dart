@@ -1,22 +1,18 @@
-class UserDataService
-{
+class UserDataService {
   CartItem currentCartItem = CartItem();
   List<CartItem> cart = [];
 
-  bool isCartEmpty()
-  {
+  bool isCartEmpty() {
     return cart.isEmpty;
   }
 
-  void createNewCart()
-  {
+  void createNewCart() {
     currentCartItem = CartItem();
     cart = [];
   }
 
-  bool tryAddingItemToCart()
-  {
-    if(currentCartItem.type == CartItemType.undefined) {
+  bool tryAddingItemToCart() {
+    if (currentCartItem.type == CartItemType.undefined) {
       return false;
     }
     cart.add(currentCartItem);
@@ -24,34 +20,29 @@ class UserDataService
     return true;
   }
 
-  void setItemType(CartItemType type)
-  {
+  void setItemType(CartItemType type) {
     assert(type != CartItemType.undefined);
     currentCartItem.type = type;
   }
 
-  void setItemSize(bool bigSize)
-  {
+  void setItemSize(bool bigSize) {
     currentCartItem.bigItem = bigSize;
   }
 
-  void setItemWeight(int weightClass)
-  {
+  void setItemWeight(int weightClass) {
     currentCartItem.weightClass = weightClass;
   }
 
-  int calcTotalStampCount()
-  {
+  int calcTotalStampCount() {
     int result = 0;
-    for(var item in cart) {
+    for (var item in cart) {
       result += item.stampCount;
     }
     return result;
   }
 
-  bool tryDeleteCartItem(int index)
-  {
-    if(index < 0 || index >= cart.length){
+  bool tryDeleteCartItem(int index) {
+    if (index < 0 || index >= cart.length) {
       return false;
     }
     cart.removeAt(index);
@@ -59,10 +50,9 @@ class UserDataService
   }
 }
 
-enum CartItemType {undefined, sofa, matres, other}
+enum CartItemType { undefined, sofa, matres, other }
 
-class CartItem
-{
+class CartItem {
   CartItemType type = CartItemType.undefined;
   bool bigItem = false;
   int weightClass = 0;

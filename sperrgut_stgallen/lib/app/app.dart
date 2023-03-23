@@ -10,6 +10,7 @@ import 'package:sperrgut_stgallen/ui/views/mattress_size_select/mattress_size_se
 import 'package:sperrgut_stgallen/ui/views/weight_select/weight_select_view.dart';
 import 'package:sperrgut_stgallen/ui/views/other_item_size_select/other_item_size_select_view.dart';
 import 'package:sperrgut_stgallen/services/user_data_service.dart';
+import 'package:sperrgut_stgallen/ui/views/map/map_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -21,6 +22,7 @@ import 'package:sperrgut_stgallen/services/user_data_service.dart';
     MaterialRoute(page: MattressSizeSelectView),
     MaterialRoute(page: WeightSelectView),
     MaterialRoute(page: OtherItemSizeSelectView),
+    MaterialRoute(page: MapView),
 // @stacked-route
   ],
   dependencies: [
