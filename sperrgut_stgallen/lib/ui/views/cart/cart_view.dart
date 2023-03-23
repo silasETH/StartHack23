@@ -24,11 +24,29 @@ class CartView extends StackedView<CartViewModel> {
       body: Column(
         children: [
           Expanded(
-            child: Container(
-              color: Colors.lightBlue,
+            child: CartItems(cartItemTexts: viewModel.cartItemTexts),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(mediumSize),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Total",
+                  style: TextStyle(
+                    fontSize: getResponsiveLargeFontSize(context),
+                  ),
+                ),
+                Text(
+                  viewModel.total,
+                  style: TextStyle(
+                    fontSize: getResponsiveLargeFontSize(context),
+                  ),
+                ),
+              ],
             ),
           ),
-          Text("Total"),
+          Divider(),
           Padding(
             padding: const EdgeInsets.all(smallSize),
             child: Row(
@@ -45,21 +63,21 @@ class CartView extends StackedView<CartViewModel> {
                     ),
                   ),
                 ),
-                MaterialButton(
-                  onPressed: viewModel.pay,
-                  child: Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: kcPrimaryColor,
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      padding: const EdgeInsets.all(smallSize),
-                      child: Center(
-                        child: Text(
-                          "Bezahlen",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: getResponsiveLargeFontSize(context),
+                Expanded(
+                  child: Material(
+                    color: kcPrimaryColor,
+                    borderRadius: BorderRadius.circular(smallSize),
+                    child: InkWell(
+                      onTap: viewModel.pay,
+                      child: Container(
+                        padding: const EdgeInsets.all(smallSize),
+                        child: Center(
+                          child: Text(
+                            "Bezahlen",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: getResponsiveLargeFontSize(context),
+                            ),
                           ),
                         ),
                       ),
@@ -79,4 +97,32 @@ class CartView extends StackedView<CartViewModel> {
     BuildContext context,
   ) =>
       CartViewModel();
+}
+
+class CartItems extends StatelessWidget {
+  final List<CartItemText> cartItemTexts;
+
+  CartItems({required this.cartItemTexts});
+
+  @override
+  Widget build(BuildContext context) {
+    List<Widget> cartItemWidgets = [];
+
+    for (var cartItemText in cartItemTexts) {
+      cartItemWidgets.add(
+        Row(
+          children: [
+            Text(cartItemText.title ?? "Sperrgut"),
+            if (cartItemText.first != null) Text(cartItemText.first!),
+            const Expanded(child: SizedBox()),
+            Text(cartItemText.stamps ?? "0"),
+          ],
+        ),
+      );
+    }
+
+    return ListView(
+      children: cartItemWidgets,
+    );
+  }
 }
