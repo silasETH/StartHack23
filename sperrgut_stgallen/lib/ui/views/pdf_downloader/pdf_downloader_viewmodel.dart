@@ -56,7 +56,7 @@ class PdfDownloaderViewModel extends BaseViewModel {
         })); // Page
 
     final output = await getTemporaryDirectory();
-    final file = File("${output.path}/example.pdf");
+    final file = File("${output.path}/sperrmüllmarken.pdf");
     await file.writeAsBytes(await pdf.save());
 
     return file.path;

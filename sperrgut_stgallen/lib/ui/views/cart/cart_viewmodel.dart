@@ -9,6 +9,7 @@ class CartViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final _userDataService = locator<UserDataService>();
   final _helperService = locator<HelperService>();
+  final _dialogService = locator<DialogService>();
 
   List<CartItemText> get cartItemTexts => _helperService.cartItemTexts;
 
@@ -19,7 +20,9 @@ class CartViewModel extends BaseViewModel {
   String get total =>
       "CHF 8.60 × ${_userDataService.calcTotalStampCount()} = CHF ${(_userDataService.calcTotalStampCount() * 8.6).toStringAsFixed(2)}";
 
-  void pay() {
+  void pay() async {
+    await _dialogService.showDialog(
+        title: "Twint", buttonTitle: "OK", cancelTitle: "Abbrechen");
     _navigationService.navigateToPdfDownloaderView();
   }
 
