@@ -49,6 +49,8 @@ class CartViewModel extends BaseViewModel {
             break;
           }
       }
+
+      cartItemTexts.add(cartItemText);
     }
 
     return cartItemTexts;

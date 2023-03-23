@@ -112,7 +112,6 @@ class CartItems extends StatelessWidget {
       cartItemWidgets.add(
         Row(
           children: [
-            Text(cartItemText.title ?? "Sperrgut"),
             if (cartItemText.first != null) Text(cartItemText.first!),
             const Expanded(child: SizedBox()),
             Text(cartItemText.stamps ?? "0"),
