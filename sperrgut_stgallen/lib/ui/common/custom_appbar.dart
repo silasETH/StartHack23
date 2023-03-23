@@ -22,12 +22,12 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
           children: [
             const Icon(
               Icons.arrow_back_ios,
-              color: Colors.red,
+              color: kcPrimaryColor,
             ),
             Text(
               "Zurück",
               style: TextStyle(
-                  color: Colors.red,
+                  color: kcPrimaryColor,
                   fontSize: getResponsiveMediumFontSize(context)),
             ),
           ],
@@ -41,7 +41,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
             child: Text(
               "Home",
               style: TextStyle(
-                  color: Colors.red,
+                  color: kcPrimaryColor,
                   fontSize: getResponsiveMediumFontSize(context)),
             ),
           ),
