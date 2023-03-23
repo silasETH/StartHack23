@@ -70,6 +70,7 @@ class UserDataService {
   void createNewCart() {
     currentCartItem = CartItem();
     cart = [];
+    saveToDisk();
   }
 
   bool tryAddingItemToCart() {
