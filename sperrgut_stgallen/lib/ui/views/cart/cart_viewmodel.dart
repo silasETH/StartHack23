@@ -64,17 +64,15 @@ class CartViewModel extends BaseViewModel {
       "CHF 8.60 × ${_userDataService.calcTotalStampCount()} = CHF ${(_userDataService.calcTotalStampCount() * 8.6).toStringAsFixed(2)}";
 
   void pay() {
-    print("Pay");
+    _userDataService.createNewCart();
+    home();
   }
 
   void salePoints() {
     _navigationService.navigateToMapView();
   }
 
-  void back() {
-    _userDataService.createNewCart();
-    home();
-  }
+  void back() {}
 
   void home() {
     _navigationService
