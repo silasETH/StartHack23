@@ -27,7 +27,7 @@ class UserDataService {
     final file = await localFile;
     IOSink io = file.openWrite();
     String id = "TRSH";
-    int version = 1;
+    int version = 2;
     io.add(id.codeUnits);
     io.add([version]);
     io.add([cart.length]);
@@ -44,7 +44,7 @@ class UserDataService {
     try{
       final file = await localFile;
       var io = IOSource(file);
-      String id = String.fromCharCodes([io.nextUint8(), io.nextUint8(), io.nextUint8(), io.nextUint8()]);
+      String id = String.fromCharCodes(io.nextUint8List(4));
       if(id != "TRSH"){
         print("file id doesn't match");
         return;
@@ -83,6 +83,7 @@ class UserDataService {
     if(currentCartItem.type == CartItemType.trashBag) {
       currentCartItem.bigItem = false;
     }
+    currentCartItem.code = [0, 1, 2, 3, 4, 5];
     cart.add(currentCartItem);
     currentCartItem = CartItem();
     saveToDisk();
@@ -144,6 +145,7 @@ class CartItem {
   CartItemType type = CartItemType.undefined;
   bool bigItem = false;
   int weightClass = 0;
+  List<int> code = [];
 
   int get stampCount => weightClass + (bigItem ? 2 : 1);
 
@@ -153,24 +155,31 @@ class CartItem {
     result.type = CartItemType.values[io.nextUint8()];
     result.bigItem = io.nextUint8() == 0 ? false : true;
     result.weightClass = io.nextUint8();
+    if(version >= 2) {
+      result.code = io.nextUint8List(6);
+    }
     return result;
   }
 
   void save(IOSink io) {
     io.add([type.index, bigItem ? 1 : 0, weightClass]);
+    io.add(code);
+  }
+
+  String codeAsString()
+  {
+    return "${code[0]}${code[1]}${code[2]} ${code[3]}${code[4]}${code[5]}";
   }
 }
 
 class Receipt {
   List<CartItem> items = [];
-  List<int> code = [];
   bool paid = false;
 
   static create(List<CartItem> items, bool paid)
   {
     Receipt result = Receipt();
     result.items = items;
-    result.code = [0, 1, 2, 3, 4, 5, 6, 7, 8];
     result.paid = paid;
   }
 
@@ -180,7 +189,6 @@ class Receipt {
     for(var item in items){
       item.save(io);
     }
-    io.add(code);
     io.add([paid ? 1 : 0]);
   }
 
@@ -191,7 +199,9 @@ class Receipt {
     for(var i = 0; i < length; i++){
       result.items.add(await CartItem.load(io, version));
     }
-    result.code = io.nextUint8List(9);
+    if(version == 1) {
+      io.nextUint8List(9);
+    }
     result.paid = io.nextUint8() != 0;
     return result;
   }
