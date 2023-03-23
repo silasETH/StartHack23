@@ -16,23 +16,25 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       leadingWidth: 140,
-      leading: MaterialButton(
-        onPressed: back,
-        child: Row(
-          children: [
-            const Icon(
-              Icons.arrow_back_ios,
-              color: kcPrimaryColor,
-            ),
-            Text(
-              "Zurück",
-              style: TextStyle(
-                  color: kcPrimaryColor,
-                  fontSize: getResponsiveMediumFontSize(context)),
-            ),
-          ],
-        ),
-      ),
+      leading: (showBack)
+          ? MaterialButton(
+              onPressed: back,
+              child: Row(
+                children: [
+                  const Icon(
+                    Icons.arrow_back_ios,
+                    color: kcPrimaryColor,
+                  ),
+                  Text(
+                    "Zurück",
+                    style: TextStyle(
+                        color: kcPrimaryColor,
+                        fontSize: getResponsiveMediumFontSize(context)),
+                  ),
+                ],
+              ),
+            )
+          : const SizedBox(),
       backgroundColor: Colors.white,
       actions: [
         MaterialButton(
