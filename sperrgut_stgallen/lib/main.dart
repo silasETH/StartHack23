@@ -37,27 +37,32 @@ class MyApp extends StatelessWidget {
           ),
           textTheme: const TextTheme(
             displayLarge: TextStyle(
-              fontSize: 36.0,
+              fontSize: 34.0,
               color: kcDarkGreyColor,
               fontWeight: FontWeight.w300,
+              fontFamily: 'Source Sans Pro',
             ),
             titleLarge: TextStyle(
               fontSize: 20.0,
               color: kcDarkGreyColor,
               fontWeight: FontWeight.bold,
+              fontFamily: 'Source Sans Pro',
             ),
             titleMedium: TextStyle(
-              fontSize: 18.0,
+              fontSize: 17.0,
               color: kcDarkGreyColor,
               fontWeight: FontWeight.bold,
+              fontFamily: 'Source Sans Pro',
             ),
             bodyLarge: TextStyle(
-              fontSize: 18.0,
+              fontSize: 17.0,
               color: kcDarkGreyColor,
+              fontFamily: 'Source Sans Pro',
             ),
             bodyMedium: TextStyle(
               fontSize: 16.0,
               color: kcDarkGreyColor,
+              fontFamily: 'Source Sans Pro',
             ),
           )),
       initialRoute: Routes.startupView,

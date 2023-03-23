@@ -18,6 +18,7 @@ class InfoView extends StackedView<InfoViewModel> {
       'Was gilt als Sperrgut?',
       'Wann wird Sperrgut abgeholt?',
       'Kann ich auch an anderen Tagen Sperrgut entsorgen?',
+      'Werden meine persönlichen Daten erfasst, wenn ich E-Stamps verwende?',
     ];
 
     final List<RichText> answers = <RichText>[
@@ -32,14 +33,21 @@ class InfoView extends StackedView<InfoViewModel> {
         text: const TextSpan(
           text:
               "Das Sperrgut wird jeweils mit der wöchentlichen Kehrichtabfuhr mitgenommen.",
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: Colors.black, fontSize: 15),
         ),
       ),
       RichText(
         text: const TextSpan(
           text:
               "Ja. Bei den Entsorgungszentren Ost und West können Sie auch zu anderen Zeiten Ihr Sperrgut entsorgen. Die Gebühren werden dort abhängig vom Gewicht berechnet.",
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: Colors.black, fontSize: 15),
+        ),
+      ),
+      RichText(
+        text: const TextSpan(
+          text:
+              "Nein. Es werden keine personenbezogenen Daten benötigt - deshalb müssen auch keine solche angegeben werden. Es werden keine Daten permanent auf dem Server gespeichert.",
+          style: TextStyle(color: Colors.black, fontSize: 15),
         ),
       ),
     ];
@@ -63,7 +71,7 @@ class InfoView extends StackedView<InfoViewModel> {
                     iconColor: kcPrimaryColor,
                     children: [
                       Container(
-                          padding: EdgeInsets.fromLTRB(16, 4, 16, 16),
+                          padding: const EdgeInsets.fromLTRB(16, 4, 16, 16),
                           child: answers[index]),
                     ],
                   );
