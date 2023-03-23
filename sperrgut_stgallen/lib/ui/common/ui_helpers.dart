@@ -2,22 +2,22 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-const double _tinySize = 5.0;
-const double _smallSize = 10.0;
-const double _mediumSize = 25.0;
-const double _largeSize = 50.0;
-const double _massiveSize = 120.0;
+const double tinySize = 5.0;
+const double smallSize = 10.0;
+const double mediumSize = 25.0;
+const double largeSize = 50.0;
+const double massiveSize = 120.0;
 
-const Widget horizontalSpaceTiny = SizedBox(width: _tinySize);
-const Widget horizontalSpaceSmall = SizedBox(width: _smallSize);
-const Widget horizontalSpaceMedium = SizedBox(width: _mediumSize);
-const Widget horizontalSpaceLarge = SizedBox(width: _largeSize);
+const Widget horizontalSpaceTiny = SizedBox(width: tinySize);
+const Widget horizontalSpaceSmall = SizedBox(width: smallSize);
+const Widget horizontalSpaceMedium = SizedBox(width: mediumSize);
+const Widget horizontalSpaceLarge = SizedBox(width: largeSize);
 
-const Widget verticalSpaceTiny = SizedBox(height: _tinySize);
-const Widget verticalSpaceSmall = SizedBox(height: _smallSize);
-const Widget verticalSpaceMedium = SizedBox(height: _mediumSize);
-const Widget verticalSpaceLarge = SizedBox(height: _largeSize);
-const Widget verticalSpaceMassive = SizedBox(height: _massiveSize);
+const Widget verticalSpaceTiny = SizedBox(height: tinySize);
+const Widget verticalSpaceSmall = SizedBox(height: smallSize);
+const Widget verticalSpaceMedium = SizedBox(height: mediumSize);
+const Widget verticalSpaceLarge = SizedBox(height: largeSize);
+const Widget verticalSpaceMassive = SizedBox(height: massiveSize);
 
 Widget spacedDivider = Column(
   children: const <Widget>[
@@ -55,7 +55,7 @@ double getResponsiveSmallFontSize(BuildContext context) =>
     getResponsiveFontSize(context, fontSize: 14, max: 15);
 
 double getResponsiveMediumFontSize(BuildContext context) =>
-    getResponsiveFontSize(context, fontSize: 16, max: 17);
+    getResponsiveFontSize(context, fontSize: 45, max: 60);
 
 double getResponsiveLargeFontSize(BuildContext context) =>
     getResponsiveFontSize(context, fontSize: 21, max: 31);
@@ -64,7 +64,7 @@ double getResponsiveExtraLargeFontSize(BuildContext context) =>
     getResponsiveFontSize(context, fontSize: 25);
 
 double getResponsiveMassiveFontSize(BuildContext context) =>
-    getResponsiveFontSize(context, fontSize: 30);
+    getResponsiveFontSize(context, fontSize: 80);
 
 double getResponsiveFontSize(BuildContext context,
     {double? fontSize, double? max}) {
