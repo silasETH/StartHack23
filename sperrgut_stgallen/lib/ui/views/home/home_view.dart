@@ -56,17 +56,12 @@ class HomeView extends StackedView<HomeViewModel> {
             ),
           )),
       body: SafeArea(
-        child: Stack(children: [
-          Container(
-            margin: EdgeInsets.fromLTRB(10, 100, 10, 0),
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('lib/assets/hero-image.png'),
-                fit: BoxFit.fitWidth,
-                alignment: Alignment.topCenter,
-              ),
-            ),
+        child: Column(children: [
+          verticalSpaceMedium,
+          const Expanded(
+            child: Image(image: AssetImage('lib/assets/hero-image.png')),
           ),
+          verticalSpaceMedium,
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25.0),
             child: Center(
