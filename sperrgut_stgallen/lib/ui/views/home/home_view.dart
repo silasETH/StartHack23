@@ -68,7 +68,7 @@ class HomeView extends StackedView<HomeViewModel> {
                       child: HomeScreenButton(
                         label: 'Sperrgut anmelden',
                         icon: Icons.add,
-                        onPressedFunction: () {},
+                        onPressedFunction: viewModel.registerItem,
                       ),
                     ),
                     horizontalSpaceMedium,
@@ -134,7 +134,7 @@ class HomeScreenButton extends StatelessWidget {
     return MaterialButton(
       padding: const EdgeInsets.all(20),
       color: Colors.white,
-      onPressed: () {},
+      onPressed: onPressedFunction,
       child: SizedBox(
         height: 120,
         child: Column(

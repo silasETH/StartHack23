@@ -36,7 +36,7 @@ class HomeViewModel extends BaseViewModel {
     );
   }
 
-  void register() {
+  void registerItem() {
     _navigationService.navigateToTypeSelectView();
   }
 }
