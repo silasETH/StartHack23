@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sperrgut_stgallen/ui/common/custom_appbar.dart';
 import 'package:stacked/stacked.dart';
 
 import 'sofa_size_select_viewmodel.dart';
@@ -13,9 +14,9 @@ class SofaSizeSelectView extends StackedView<SofaSizeSelectViewModel> {
     Widget? child,
   ) {
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
-      body: Container(
-        padding: const EdgeInsets.only(left: 25.0, right: 25.0),
+      appBar: CustomAppBar(
+        home: viewModel.home,
+        back: viewModel.back,
       ),
     );
   }

@@ -50,7 +50,7 @@ class UserDataService {
   }
 }
 
-enum CartItemType { undefined, sofa, matres, other }
+enum CartItemType { undefined, sofa, mattress, other }
 
 class CartItem {
   CartItemType type = CartItemType.undefined;

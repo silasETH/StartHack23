@@ -1,12 +1,17 @@
 import 'package:sperrgut_stgallen/app/app.locator.dart';
 import 'package:sperrgut_stgallen/app/app.router.dart';
+import 'package:sperrgut_stgallen/services/user_data_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class TypeSelectViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
+  final _userDataService = locator<UserDataService>();
 
-  void selectSofa() {}
+  void selectSofa() {
+    _userDataService.setItemType(CartItemType.sofa);
+    _navigationService.navigateToSofaSizeSelectView();
+  }
 
   void selectMattress() {}
 
@@ -14,7 +19,7 @@ class TypeSelectViewModel extends BaseViewModel {
 
   void selectOther() {}
 
-  void pop() {
+  void back() {
     _navigationService.back();
   }
 
