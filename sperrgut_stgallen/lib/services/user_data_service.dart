@@ -61,8 +61,15 @@ class UserDataService {
     if (currentCartItem.type == CartItemType.undefined) {
       return false;
     }
+    if(currentCartItem.type != CartItemType.other) {
+      currentCartItem.weightClass = 0;
+    }
+    if(currentCartItem.type == CartItemType.trashBin) {
+      currentCartItem.bigItem = false;
+    }
     cart.add(currentCartItem);
     currentCartItem = CartItem();
+    saveToDisk();
     return true;
   }
 

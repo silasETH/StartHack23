@@ -24,4 +24,8 @@ class HomeViewModel extends BaseViewModel {
   void receipts() {
     _navigationService.navigateToPdfDownloaderView();
   }
+
+  void loadUserData() async {
+    _userDataService.loadFromDisk();
+  }
 }
