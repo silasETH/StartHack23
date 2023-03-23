@@ -3,7 +3,6 @@ import 'package:sperrgut_stgallen/ui/common/app_colors.dart';
 import 'package:sperrgut_stgallen/ui/common/custom_appbar.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../common/ui_helpers.dart';
 import 'info_viewmodel.dart';
 
 class InfoView extends StackedView<InfoViewModel> {
@@ -16,29 +15,30 @@ class InfoView extends StackedView<InfoViewModel> {
     Widget? child,
   ) {
     final List<String> questions = <String>[
-      'Was gehört ins Sperrgut?',
+      'Was gilt als Sperrgut?',
       'Wann wird Sperrgut abgeholt?',
-      'Wo sind die Entsorgungszentren?',
+      'Kann ich auch an anderen Tagen Sperrgut entsorgen?',
     ];
 
     final List<RichText> answers = <RichText>[
       RichText(
         text: const TextSpan(
           text:
-              "In das Sperrgut gehören brennbare grosse Güter, wie z.B. Möbel, Teppiche, Ski, Matratzen, Betten, Tische, Stühle oder Koffer.",
+              "Als Sperrgut gelten brennbare grosse Güter, wie z.B. Möbel, Teppiche, Ski, Matratzen, Betten, Tische, Stühle oder Koffer.",
+          style: TextStyle(color: Colors.black, fontSize: 15),
+        ),
+      ),
+      RichText(
+        text: const TextSpan(
+          text:
+              "Das Sperrgut wird jeweils mit der wöchentlichen Kehrichtabfuhr mitgenommen.",
           style: TextStyle(color: Colors.black),
         ),
       ),
       RichText(
         text: const TextSpan(
           text:
-              "Das Sperrgut wird jeweils mit der wöchentlichen Kehrichtabfuh mitgenommen.",
-          style: TextStyle(color: Colors.black),
-        ),
-      ),
-      RichText(
-        text: TextSpan(
-          text: "Alles.",
+              "Ja. Bei den Entsorgungszentren Ost und West können Sie auch zu anderen Zeiten Ihr Sperrgut entsorgen. Die Gebühren werden dort abhängig vom Gewicht berechnet.",
           style: TextStyle(color: Colors.black),
         ),
       ),
@@ -62,7 +62,9 @@ class InfoView extends StackedView<InfoViewModel> {
                     textColor: kcPrimaryColor,
                     iconColor: kcPrimaryColor,
                     children: [
-                      Container(padding: paddingMedium, child: answers[index]),
+                      Container(
+                          padding: EdgeInsets.fromLTRB(16, 4, 16, 16),
+                          child: answers[index]),
                     ],
                   );
                 },
