@@ -73,10 +73,25 @@ class CartView extends StackedView<CartViewModel> {
                 MaterialButton(
                   onPressed: viewModel.salePoints,
                   child: Container(
+                    margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                     padding: const EdgeInsets.all(smallSize),
-                    child: Text(
+                    child: const Text(
                       "Verkaufsstellen",
-                      style: Theme.of(context).textTheme.bodyLarge,
+                      style: TextStyle(
+                        fontSize: 18,
+                        shadows: [
+                          Shadow(
+                              color: kcDarkGreyColor,
+                              offset: Offset(0, -5))
+                        ],
+                        color: Colors.transparent,
+                        decoration:
+                        TextDecoration.underline,
+                        decorationColor: kcDarkGreyColor,
+                        decorationThickness: 2,
+                        decorationStyle:
+                        TextDecorationStyle.solid,
+                      ),
                     ),
                   ),
                 ),
