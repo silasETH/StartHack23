@@ -8,6 +8,7 @@ import 'dart:ui' as _i5;
 
 import 'package:flutter/material.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:sperrgut_stgallen/services/user_data_service.dart' as _i6;
 import 'package:stacked_services/stacked_services.dart' as _i2;
 
 // ignore_for_file: type=lint
@@ -495,8 +496,7 @@ class MockDialogService extends _i1.Mock implements _i2.DialogService {
       _i3.BuildContext,
       _i2.DialogRequest<dynamic>,
       dynamic Function(_i2.DialogResponse<dynamic>),
-    )?
-        builder,
+    )? builder,
   }) =>
       super.noSuchMethod(
         Invocation.method(
@@ -622,3 +622,8 @@ class MockDialogService extends _i1.Mock implements _i2.DialogService {
         returnValueForMissingStub: null,
       );
 }
+
+/// A class which mocks [UserDataService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockUserDataService extends _i1.Mock implements _i6.UserDataService {}

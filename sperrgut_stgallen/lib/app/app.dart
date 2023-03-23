@@ -9,6 +9,7 @@ import 'package:sperrgut_stgallen/ui/views/sofa_size_select/sofa_size_select_vie
 import 'package:sperrgut_stgallen/ui/views/mattress_size_select/mattress_size_select_view.dart';
 import 'package:sperrgut_stgallen/ui/views/weight_select/weight_select_view.dart';
 import 'package:sperrgut_stgallen/ui/views/other_item_size_select/other_item_size_select_view.dart';
+import 'package:sperrgut_stgallen/services/user_data_service.dart';
 // @stacked-import
 
 @StackedApp(
@@ -26,7 +27,8 @@ import 'package:sperrgut_stgallen/ui/views/other_item_size_select/other_item_siz
     LazySingleton(classType: BottomSheetService),
     LazySingleton(classType: DialogService),
     LazySingleton(classType: NavigationService),
-    // @stacked-service
+    LazySingleton(classType: UserDataService),
+// @stacked-service
   ],
   bottomsheets: [
     StackedBottomsheet(classType: NoticeSheet),
