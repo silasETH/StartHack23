@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
             displayLarge: TextStyle(
               fontSize: 36.0,
               color: kcDarkGreyColor,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w300,
             ),
             titleLarge: TextStyle(
               fontSize: 20.0,
