@@ -39,4 +39,12 @@ class HomeViewModel extends BaseViewModel {
   void registerItem() {
     _navigationService.navigateToTypeSelectView();
   }
+
+  void map() {
+    _navigationService.navigateToMapView();
+  }
+
+  void info() {
+    _navigationService.navigateToInfoView();
+  }
 }

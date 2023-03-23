@@ -87,7 +87,7 @@ class HomeView extends StackedView<HomeViewModel> {
                         child: HomeScreenButton(
                           label: 'Informationen',
                           icon: Icons.info_outline,
-                          onPressedFunction: () {},
+                          onPressedFunction: viewModel.info,
                         ),
                       ),
                       horizontalSpaceMedium,
@@ -95,7 +95,7 @@ class HomeView extends StackedView<HomeViewModel> {
                         child: HomeScreenButton(
                           label: 'Verkaufsstellen finden',
                           icon: Icons.map_outlined,
-                          onPressedFunction: () {},
+                          onPressedFunction: viewModel.map,
                         ),
                       ),
                     ],
