@@ -21,7 +21,7 @@ class CartViewModel extends BaseViewModel {
           {
             cartItemText.title = "Sofa";
             cartItemText.first = cartItem.bigItem
-                ? "mehr als 3 Sitzplätze"
+                ? "3 oder mehr Sitzplätze"
                 : "bis zu 2 Sitzplätze";
             break;
           }

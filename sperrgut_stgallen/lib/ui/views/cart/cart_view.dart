@@ -110,12 +110,57 @@ class CartItems extends StatelessWidget {
 
     for (var cartItemText in cartItemTexts) {
       cartItemWidgets.add(
-        Row(
-          children: [
-            if (cartItemText.first != null) Text(cartItemText.first!),
-            const Expanded(child: SizedBox()),
-            Text(cartItemText.stamps ?? "0"),
-          ],
+        Padding(
+          padding: const EdgeInsets.all(mediumSize),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  SizedBox(
+                    width: massiveSize,
+                    child: Text(
+                      cartItemText.title ?? "Sperrgut",
+                      style: TextStyle(
+                          fontSize: getResponsiveLargeFontSize(context)),
+                    ),
+                  ),
+                  (cartItemText.second != null)
+                      ? Column(
+                          children: [
+                            Text(
+                              cartItemText.first!,
+                              style: TextStyle(
+                                  fontSize:
+                                      getResponsiveMediumFontSize(context)),
+                            ),
+                            Text(
+                              cartItemText.second!,
+                              style: TextStyle(
+                                  fontSize:
+                                      getResponsiveMediumFontSize(context)),
+                            ),
+                          ],
+                        )
+                      : (cartItemText.first != null)
+                          ? Text(
+                              cartItemText.first!,
+                              style: TextStyle(
+                                  fontSize:
+                                      getResponsiveMediumFontSize(context)),
+                            )
+                          : const SizedBox(),
+                  const Expanded(child: SizedBox()),
+                  Text(
+                    cartItemText.stamps ?? "0",
+                    style: TextStyle(
+                        fontSize: getResponsiveLargeFontSize(context)),
+                  ),
+                ],
+              ),
+              verticalSpaceSmall,
+              Divider(),
+            ],
+          ),
         ),
       );
     }
