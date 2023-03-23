@@ -1,5 +1,4 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:sperrgut_stgallen/ui/common/app_colors.dart';
 import 'package:sperrgut_stgallen/ui/common/ui_helpers.dart';
@@ -71,7 +70,7 @@ class HomeView extends StackedView<HomeViewModel> {
                   Row(children: [
                     Expanded(
                       child: HomeScreenButton(
-                        label: 'Sperrgut anmelden',
+                        label: 'Sperrgut\nanmelden',
                         icon: Icons.add,
                         onPressedFunction: viewModel.registerItem,
                       ),
@@ -79,7 +78,7 @@ class HomeView extends StackedView<HomeViewModel> {
                     horizontalSpaceMedium,
                     Expanded(
                       child: HomeScreenButton(
-                        label: 'Quittungen',
+                        label: 'Übersicht\ne-Stamps',
                         icon: Icons.receipt_long_sharp,
                         onPressedFunction: viewModel.receipts,
                       ),
@@ -90,7 +89,7 @@ class HomeView extends StackedView<HomeViewModel> {
                     children: [
                       Expanded(
                         child: HomeScreenButton(
-                          label: 'Informationen',
+                          label: 'Informationen\nSperrgut',
                           icon: Icons.info_outline,
                           onPressedFunction: viewModel.info,
                         ),
@@ -98,7 +97,7 @@ class HomeView extends StackedView<HomeViewModel> {
                       horizontalSpaceMedium,
                       Expanded(
                         child: HomeScreenButton(
-                          label: 'Verkaufsstellen finden',
+                          label: 'Verkaufsstellen\nfinden',
                           icon: Icons.map_outlined,
                           onPressedFunction: viewModel.map,
                         ),

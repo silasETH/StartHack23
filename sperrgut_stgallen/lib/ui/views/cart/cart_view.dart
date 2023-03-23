@@ -72,7 +72,7 @@ class CartView extends StackedView<CartViewModel> {
               ],
             ),
           ),
-          Divider(),
+          const Divider(),
           Padding(
             padding: const EdgeInsets.all(smallSize),
             child: Row(
@@ -143,7 +143,8 @@ class CartItems extends StatelessWidget {
   final List<CartItemText> cartItemTexts;
   final Function() onAdd;
 
-  CartItems({required this.cartItemTexts, required this.onAdd});
+  const CartItems(
+      {super.key, required this.cartItemTexts, required this.onAdd});
 
   @override
   Widget build(BuildContext context) {
@@ -185,7 +186,7 @@ class CartItems extends StatelessWidget {
               ],
             ),
             const SizedBox(height: smallSize),
-            Divider(),
+            const Divider(),
           ],
         ),
       );

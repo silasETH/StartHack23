@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:sperrgut_stgallen/ui/common/app_colors.dart';
-import 'package:sperrgut_stgallen/ui/common/ui_helpers.dart';
 
 class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   final Function() back;
   final Function() home;
-  bool showBack;
+  final bool showBack;
 
   CustomAppBar({
     super.key,
@@ -22,8 +21,8 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
           ? MaterialButton(
               onPressed: back,
               child: Row(
-                children: [
-                  const Icon(
+                children: const [
+                  Icon(
                     Icons.arrow_back_ios,
                     color: kcPrimaryColor,
                   ),
@@ -42,7 +41,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
       actions: [
         MaterialButton(
           onPressed: home,
-          child: Center(
+          child: const Center(
             child: Text(
               "Home",
               style: TextStyle(

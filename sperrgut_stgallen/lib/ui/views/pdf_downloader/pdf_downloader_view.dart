@@ -93,7 +93,7 @@ class PdfDownloaderView extends StackedView<PdfDownloaderViewModel> {
 class ReceiptItems extends StatelessWidget {
   final List<CartItemText> cartItemTexts;
 
-  ReceiptItems({required this.cartItemTexts});
+  const ReceiptItems({super.key, required this.cartItemTexts});
 
   @override
   Widget build(BuildContext context) {

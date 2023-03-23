@@ -13,7 +13,6 @@ import 'package:sperrgut_stgallen/ui/views/pdf_downloader/pdf_downloader_view.da
 import 'package:sperrgut_stgallen/ui/views/sofa_size_select/sofa_size_select_view.dart';
 import 'package:sperrgut_stgallen/ui/views/startup/startup_view.dart';
 import 'package:sperrgut_stgallen/ui/views/type_select/type_select_view.dart';
-import 'package:sperrgut_stgallen/ui/views/weight_select/weight_select_view.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 // @stacked-import
@@ -25,13 +24,12 @@ import 'package:stacked_services/stacked_services.dart';
     MaterialRoute(page: TypeSelectView),
     MaterialRoute(page: SofaSizeSelectView),
     MaterialRoute(page: MattressSizeSelectView),
-    MaterialRoute(page: WeightSelectView),
     MaterialRoute(page: OtherItemSizeSelectView),
+    MaterialRoute(page: OtherItemWeightSelectView),
     MaterialRoute(page: MapView),
     MaterialRoute(page: InfoView),
     MaterialRoute(page: PdfDownloaderView),
     MaterialRoute(page: CartView),
-    MaterialRoute(page: OtherItemWeightSelectView),
 // @stacked-route
   ],
   dependencies: [

@@ -30,10 +30,13 @@ class MapView extends StackedView<MapViewModel> {
               ),
             ),
             const Expanded(
-                child: Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Image(image: AssetImage('lib/assets/mocked_map.png')),
-            ))
+              child: Padding(
+                padding: EdgeInsets.all(10),
+                child: Image(
+                  image: AssetImage('lib/assets/mocked_map.png'),
+                ),
+              ),
+            )
           ],
         ),
       ),

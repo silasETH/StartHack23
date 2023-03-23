@@ -5,9 +5,9 @@ class ListButton extends StatelessWidget {
   final Function() onPressed;
   final IconData icon;
   final String text;
-  Widget? leading;
+  final Widget? leading;
 
-  ListButton({
+  const ListButton({
     super.key,
     required this.onPressed,
     required this.icon,
