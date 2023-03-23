@@ -28,7 +28,7 @@ class PdfDownloaderView extends StackedView<PdfDownloaderViewModel> {
               padding: const EdgeInsets.all(mediumSize),
               child: Text(
                 "PDF Download",
-                style: Theme.of(context).textTheme.titleLarge,
+                style: Theme.of(context).textTheme.displayLarge,
               ),
             ),
             Center(

@@ -27,7 +27,7 @@ class OtherItemWeightSelectView
             padding: const EdgeInsets.all(mediumSize),
             child: Text(
               "Wie schwer ist das Objekt?",
-              style: Theme.of(context).textTheme.titleLarge,
+              style: Theme.of(context).textTheme.displayLarge,
             ),
           ),
           Padding(

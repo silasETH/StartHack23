@@ -68,10 +68,13 @@ class CartView extends StackedView<CartViewModel> {
                       onTap: viewModel.pay,
                       child: Container(
                         padding: const EdgeInsets.all(smallSize),
-                        child: Center(
+                        child: const Center(
                           child: Text(
                             "Bezahlen",
-                            style: Theme.of(context).textTheme.bodyLarge,
+                            style: TextStyle(
+                              fontSize: 18.0,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),

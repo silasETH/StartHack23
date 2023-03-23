@@ -26,8 +26,13 @@ class MyApp extends StatelessWidget {
         focusColor: kcPrimaryColor,
         scaffoldBackgroundColor: kcBackgroundColor,
         textTheme: const TextTheme(
-          titleLarge:TextStyle(
-          fontSize: 36.0,
+          displayLarge: TextStyle(
+            fontSize: 36.0,
+            color: kcDarkGreyColor,
+            fontWeight: FontWeight.bold,
+          ),
+          titleLarge: TextStyle(
+          fontSize: 20.0,
           color: kcDarkGreyColor,
           fontWeight: FontWeight.bold,
         ),
