@@ -127,7 +127,7 @@ class ReceiptItems extends StatelessWidget {
               ],
             ),
             const SizedBox(height: smallSize),
-            const Divider(),
+            const Divider(thickness: 1),
           ],
         ),
       );

@@ -72,7 +72,7 @@ class CartView extends StackedView<CartViewModel> {
               ],
             ),
           ),
-          const Divider(),
+          const Divider(thickness: 1),
           Padding(
             padding: const EdgeInsets.all(smallSize),
             child: Row(
@@ -186,7 +186,7 @@ class CartItems extends StatelessWidget {
               ],
             ),
             const SizedBox(height: smallSize),
-            const Divider(),
+            const Divider(thickness: 1),
           ],
         ),
       );
