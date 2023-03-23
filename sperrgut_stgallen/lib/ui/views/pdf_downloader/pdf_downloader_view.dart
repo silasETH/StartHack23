@@ -27,11 +27,11 @@ class PdfDownloaderView extends StackedView<PdfDownloaderViewModel> {
         height: 80,
         child: FloatingActionButton(
           onPressed: () async => openFile(await viewModel.makePdf()),
+          backgroundColor: kcPrimaryColor,
           child: const Icon(
             Icons.qr_code,
             size: 40,
           ),
-          backgroundColor: kcPrimaryColor,
         ),
       ),
       body: Column(
