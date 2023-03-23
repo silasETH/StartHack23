@@ -80,7 +80,7 @@ class UserDataService {
     if (currentCartItem.type == CartItemType.trashBag) {
       currentCartItem.bigItem = false;
     }
-    currentCartItem.code = CartItem.itemToCode(currentCartItem);
+    currentCartItem.code = [1, 2, 3, 4, 5, 6];
     cart.add(currentCartItem);
     currentCartItem = CartItem();
     saveToDisk();
@@ -161,7 +161,7 @@ class CartItem {
 
   static final List<int> forbiddenToSanitized = [0, 2, 5, 6, 7, 8];
   static final List<int> sanitizedToForbidden = [0, 0, 1, 0, 0, 2, 3, 4, 5, 0];
-  static final List<int> numberPair = [6, 5, 4, 3, 2, 1];
+  static final List<int> numberPair = [5, 4, 3, 2, 1, 0];
   static final List<bool> forbidden = [
     false,
     true,
