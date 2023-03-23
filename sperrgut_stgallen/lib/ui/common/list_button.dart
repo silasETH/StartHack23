@@ -36,9 +36,8 @@ class ListButton extends StatelessWidget {
                   horizontalSpaceMedium,
                   Text(
                     text,
-                    style: TextStyle(
-                        fontSize: getResponsiveMediumFontSize(context)),
-                  ),
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  )
                 ],
               ),
               verticalSpaceMedium,

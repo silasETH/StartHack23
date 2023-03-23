@@ -26,9 +26,7 @@ class MapView extends StackedView<MapViewModel> {
               padding: const EdgeInsets.all(mediumSize),
               child: Text(
                 "Verkaufsstellen für Sperrgutmarken",
-                style: TextStyle(
-                  fontSize: getResponsiveMassiveFontSize(context),
-                ),
+                style: Theme.of(context).textTheme.titleLarge,
               ),
             ),
             const Expanded(

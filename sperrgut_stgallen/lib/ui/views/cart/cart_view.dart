@@ -36,15 +36,11 @@ class CartView extends StackedView<CartViewModel> {
               children: [
                 Text(
                   "Total",
-                  style: TextStyle(
-                    fontSize: getResponsiveLargeFontSize(context),
-                  ),
+                  style: Theme.of(context).textTheme.bodyLarge,
                 ),
                 Text(
                   viewModel.total,
-                  style: TextStyle(
-                    fontSize: getResponsiveLargeFontSize(context),
-                  ),
+                  style: Theme.of(context).textTheme.bodyLarge,
                 ),
               ],
             ),
@@ -60,9 +56,7 @@ class CartView extends StackedView<CartViewModel> {
                     padding: const EdgeInsets.all(smallSize),
                     child: Text(
                       "Verkaufsstellen",
-                      style: TextStyle(
-                        fontSize: getResponsiveLargeFontSize(context),
-                      ),
+                      style: Theme.of(context).textTheme.bodyLarge,
                     ),
                   ),
                 ),
@@ -77,10 +71,7 @@ class CartView extends StackedView<CartViewModel> {
                         child: Center(
                           child: Text(
                             "Bezahlen",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: getResponsiveLargeFontSize(context),
-                            ),
+                            style: Theme.of(context).textTheme.bodyLarge,
                           ),
                         ),
                       ),
@@ -124,8 +115,7 @@ class CartItems extends StatelessWidget {
                     width: massiveSize,
                     child: Text(
                       cartItemText.title ?? "Sperrgut",
-                      style: TextStyle(
-                          fontSize: getResponsiveLargeFontSize(context)),
+                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
                   ),
                   (cartItemText.second != null)
@@ -133,31 +123,24 @@ class CartItems extends StatelessWidget {
                           children: [
                             Text(
                               cartItemText.first!,
-                              style: TextStyle(
-                                  fontSize:
-                                      getResponsiveMediumFontSize(context)),
+                              style: Theme.of(context).textTheme.bodyMedium,
                             ),
                             Text(
                               cartItemText.second!,
-                              style: TextStyle(
-                                  fontSize:
-                                      getResponsiveMediumFontSize(context)),
+                              style: Theme.of(context).textTheme.bodyMedium,
                             ),
                           ],
                         )
                       : (cartItemText.first != null)
                           ? Text(
                               cartItemText.first!,
-                              style: TextStyle(
-                                  fontSize:
-                                      getResponsiveMediumFontSize(context)),
+                              style: Theme.of(context).textTheme.bodyMedium,
                             )
                           : const SizedBox(),
                   const Expanded(child: SizedBox()),
                   Text(
                     cartItemText.stamps ?? "0",
-                    style: TextStyle(
-                        fontSize: getResponsiveLargeFontSize(context)),
+                    style: Theme.of(context).textTheme.bodyMedium,
                   ),
                 ],
               ),
@@ -183,7 +166,7 @@ class CartItems extends StatelessWidget {
             ),
             Text(
               "Weiteres Sperrgut erfassen",
-              style: TextStyle(fontSize: getResponsiveMediumFontSize(context)),
+              style: Theme.of(context).textTheme.bodyMedium,
             )
           ],
         ),

@@ -33,6 +33,8 @@ Widget spacedDivider = Column(
   ],
 );
 
+
+
 Widget verticalSpace(double height) => SizedBox(height: height);
 
 double screenWidth(BuildContext context) => MediaQuery.of(context).size.width;
@@ -55,6 +57,7 @@ double thirdScreenWidth(BuildContext context) =>
 double quarterScreenWidth(BuildContext context) =>
     screenWidthFraction(context, dividedBy: 4);
 
+/*
 double getResponsiveHorizontalSpaceMedium(BuildContext context) =>
     screenWidthFraction(context, dividedBy: 10);
 double getResponsiveSmallFontSize(BuildContext context) =>
@@ -82,3 +85,4 @@ double getResponsiveFontSize(BuildContext context,
 
   return responsiveSize;
 }
+ */

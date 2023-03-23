@@ -25,9 +25,26 @@ class MyApp extends StatelessWidget {
         primaryColor: kcPrimaryColor,
         focusColor: kcPrimaryColor,
         scaffoldBackgroundColor: kcBackgroundColor,
-        textTheme: Theme.of(context).textTheme.apply(
-              bodyColor: Colors.black,
-            ),
+        textTheme: const TextTheme(
+          titleLarge:TextStyle(
+          fontSize: 36.0,
+          color: kcDarkGreyColor,
+          fontWeight: FontWeight.bold,
+        ),
+          titleMedium: TextStyle(
+            fontSize: 18.0,
+            color: kcDarkGreyColor,
+            fontWeight: FontWeight.bold,
+          ),
+          bodyLarge: TextStyle(
+            fontSize: 18.0,
+            color: kcDarkGreyColor,
+          ),
+          bodyMedium: TextStyle(
+            fontSize: 16.0,
+            color: kcDarkGreyColor,
+          ),
+        )
       ),
       initialRoute: Routes.startupView,
       onGenerateRoute: StackedRouter().onGenerateRoute,

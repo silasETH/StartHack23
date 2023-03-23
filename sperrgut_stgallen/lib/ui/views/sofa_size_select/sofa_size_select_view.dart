@@ -26,9 +26,7 @@ class SofaSizeSelectView extends StackedView<SofaSizeSelectViewModel> {
             padding: const EdgeInsets.all(mediumSize),
             child: Text(
               "Wie viele Sitzplätze hat das Sofa?",
-              style: TextStyle(
-                fontSize: getResponsiveMassiveFontSize(context),
-              ),
+              style: Theme.of(context).textTheme.titleLarge,
             ),
           ),
           Padding(

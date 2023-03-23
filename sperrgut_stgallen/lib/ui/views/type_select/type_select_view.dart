@@ -26,9 +26,7 @@ class TypeSelectView extends StackedView<TypeSelectViewModel> {
             padding: const EdgeInsets.all(mediumSize),
             child: Text(
               "Um welchen Typ von Sperrgut handelt es sich?",
-              style: TextStyle(
-                fontSize: getResponsiveMassiveFontSize(context),
-              ),
+              style: Theme.of(context).textTheme.titleLarge,
             ),
           ),
           Padding(

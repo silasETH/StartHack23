@@ -26,6 +26,7 @@ class HomeView extends StackedView<HomeViewModel> {
           title: const Text(
             'Sperrgut Stadt St. Gallen',
             style: TextStyle(
+              fontSize: 18.0,
               color: kcDarkGreyColor,
               fontWeight: FontWeight.bold,
             ),
@@ -157,7 +158,7 @@ class HomeScreenButton extends StatelessWidget {
             verticalSpaceSmall,
             Text(
               label,
-              style: const TextStyle(color: kcDarkGreyColor, fontSize: 18),
+              style: Theme.of(context).textTheme.titleMedium,
               textAlign: TextAlign.center,
             ),
           ],

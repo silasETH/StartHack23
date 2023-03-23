@@ -26,9 +26,7 @@ class MattressSizeSelectView extends StackedView<MattressSizeSelectViewModel> {
             padding: const EdgeInsets.all(mediumSize),
             child: Text(
               "Wie gross ist die Matratze?",
-              style: TextStyle(
-                fontSize: getResponsiveMassiveFontSize(context),
-              ),
+              style: Theme.of(context).textTheme.titleLarge,
             ),
           ),
           Padding(

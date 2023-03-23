@@ -30,8 +30,9 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
                   Text(
                     "Zurück",
                     style: TextStyle(
-                        color: kcPrimaryColor,
-                        fontSize: getResponsiveMediumFontSize(context)),
+                      fontSize: 16.0,
+                      color: kcPrimaryColor,
+                    ),
                   ),
                 ],
               ),
@@ -45,8 +46,9 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
             child: Text(
               "Home",
               style: TextStyle(
-                  color: kcPrimaryColor,
-                  fontSize: getResponsiveMediumFontSize(context)),
+                fontSize: 16.0,
+                color: kcPrimaryColor,
+              ),
             ),
           ),
         ),
