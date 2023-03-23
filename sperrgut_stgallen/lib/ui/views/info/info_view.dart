@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sperrgut_stgallen/ui/common/app_colors.dart';
+import 'package:sperrgut_stgallen/ui/common/custom_appbar.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../common/ui_helpers.dart';
@@ -29,65 +30,30 @@ class InfoView extends StackedView<InfoViewModel> {
         ),
       ),
       RichText(
-        text: TextSpan(
-          text: "Das Sperrgut wird jeweils mit der wöchentlichen ",
-          style: DefaultTextStyle.of(context).style,
+        text: const TextSpan(
+          text:
+              "Das Sperrgut wird jeweils mit der wöchentlichen Kehrichtabfuh mitgenommen.",
+          style: TextStyle(color: Colors.black),
         ),
       ),
       RichText(
         text: TextSpan(
           text: "Alles.",
-          style: DefaultTextStyle.of(context).style,
+          style: TextStyle(color: Colors.black),
         ),
       ),
     ];
 
     return Scaffold(
-      appBar: AppBar(
-        leadingWidth: 140,
-        leading: MaterialButton(
-          onPressed: viewModel.pop,
-          child: Row(
-            children: [
-              const Icon(
-                Icons.arrow_back_ios,
-                color: Colors.red,
-              ),
-              Text(
-                "Zurück",
-                style: TextStyle(
-                    color: Colors.red,
-                    fontSize: getResponsiveMediumFontSize(context)),
-              ),
-            ],
-          ),
-        ),
-        backgroundColor: Colors.white,
-        actions: [
-          MaterialButton(
-            onPressed: viewModel.home,
-            child: Center(
-              child: Text(
-                "Home",
-                style: TextStyle(
-                    color: Colors.red,
-                    fontSize: getResponsiveMediumFontSize(context)),
-              ),
-            ),
-          ),
-        ],
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(4.0),
-          child: Container(
-            color: kcPrimaryColor,
-            height: 2.0,
-          ),
-        ),
+      appBar: CustomAppBar(
+        back: viewModel.pop,
+        home: viewModel.home,
       ),
-      body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
+      body: Column(
+        children: [
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
               child: ListView.separated(
                 itemCount: questions.length,
                 itemBuilder: (BuildContext context, int index) {
@@ -96,9 +62,7 @@ class InfoView extends StackedView<InfoViewModel> {
                     textColor: kcPrimaryColor,
                     iconColor: kcPrimaryColor,
                     children: [
-                      Container(
-                          //padding: paddingMedium,
-                          child: Expanded(child: answers[index])),
+                      Container(padding: paddingMedium, child: answers[index]),
                     ],
                   );
                 },
@@ -106,8 +70,8 @@ class InfoView extends StackedView<InfoViewModel> {
                     const Divider(),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
