@@ -105,49 +105,42 @@ class CartItems extends StatelessWidget {
 
     for (var cartItemText in cartItemTexts) {
       widgets.add(
-        Padding(
-          padding: const EdgeInsets.all(mediumSize),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  SizedBox(
-                    width: massiveSize,
-                    child: Text(
-                      cartItemText.title ?? "Sperrgut",
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
+        Column(
+          children: [
+            const SizedBox(height: smallSize),
+            Row(
+              children: [
+                SizedBox(
+                  width: 150,
+                  child: Text(
+                    cartItemText.title ?? "Sperrgut",
+                    style: Theme.of(context).textTheme.bodyLarge,
                   ),
-                  (cartItemText.second != null)
-                      ? Column(
-                          children: [
-                            Text(
-                              cartItemText.first!,
-                              style: Theme.of(context).textTheme.bodyMedium,
-                            ),
-                            Text(
-                              cartItemText.second!,
-                              style: Theme.of(context).textTheme.bodyMedium,
-                            ),
-                          ],
-                        )
-                      : (cartItemText.first != null)
-                          ? Text(
-                              cartItemText.first!,
-                              style: Theme.of(context).textTheme.bodyMedium,
-                            )
-                          : const SizedBox(),
-                  const Expanded(child: SizedBox()),
-                  Text(
-                    cartItemText.stamps ?? "0",
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
-                ],
-              ),
-              verticalSpaceSmall,
-              Divider(),
-            ],
-          ),
+                ),
+                (cartItemText.second != null)
+                    ? Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(cartItemText.first!,
+                              style: Theme.of(context).textTheme.bodyMedium),
+                          Text(cartItemText.second!,
+                              style: Theme.of(context).textTheme.bodyMedium),
+                        ],
+                      )
+                    : (cartItemText.first != null)
+                        ? Text(cartItemText.first!,
+                            style: Theme.of(context).textTheme.bodyMedium)
+                        : const SizedBox(),
+                const Expanded(child: SizedBox()),
+                Text(
+                  cartItemText.stamps ?? "0",
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+              ],
+            ),
+            const SizedBox(height: smallSize),
+            Divider(),
+          ],
         ),
       );
     }
@@ -156,14 +149,13 @@ class CartItems extends StatelessWidget {
       MaterialButton(
         onPressed: onAdd,
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(
-              width: massiveSize,
-              child: Icon(
-                Icons.add,
-                size: mediumSize,
-              ),
+            const Icon(
+              Icons.add,
+              size: mediumSize,
             ),
+            const SizedBox(width: smallSize),
             Text(
               "Weiteres Sperrgut erfassen",
               style: Theme.of(context).textTheme.bodyMedium,
@@ -173,8 +165,11 @@ class CartItems extends StatelessWidget {
       ),
     );
 
-    return ListView(
-      children: widgets,
+    return Padding(
+      padding: const EdgeInsets.all(mediumSize),
+      child: ListView(
+        children: widgets,
+      ),
     );
   }
 }

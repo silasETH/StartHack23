@@ -42,7 +42,7 @@ class OtherItemWeightSelectView
                 ListButton(
                   onPressed: viewModel.select30To60Item,
                   icon: Icons.monitor_weight_outlined,
-                  text: "Zwischen 30 und 60kg",
+                  text: "Zwischen 30kg und 60kg",
                 ),
                 ListButton(
                   onPressed: viewModel.selectLarger60Item,

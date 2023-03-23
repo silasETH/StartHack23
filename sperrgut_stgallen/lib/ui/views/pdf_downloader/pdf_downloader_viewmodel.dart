@@ -52,7 +52,7 @@ class PdfDownloaderViewModel extends BaseViewModel {
 
         case CartItemType.trashBag:
           {
-            cartItemText.title = "Nicht-Offizieller Abfallsack";
+            cartItemText.title = "Inoffizieller Abfallsack";
             break;
           }
 
@@ -60,9 +60,24 @@ class PdfDownloaderViewModel extends BaseViewModel {
           {
             cartItemText.title = "Sperrmüll";
             cartItemText.first =
-                "weniger als ${(cartItem.weightClass + 1) * 30}kg";
-            cartItemText.second =
                 cartItem.bigItem ? "Übergrösse" : "Normalgrösse";
+            switch (cartItem.weightClass) {
+              case 0:
+                {
+                  cartItemText.second = "Weniger als 30kg";
+                  break;
+                }
+              case 1:
+                {
+                  cartItemText.second = "Zwischen 30kg und 60kg";
+                  break;
+                }
+              default:
+                {
+                  cartItemText.second = "Mehr als 60kg";
+                  break;
+                }
+            }
             break;
           }
       }
@@ -87,8 +102,13 @@ class PdfDownloaderViewModel extends BaseViewModel {
           List<pw.Widget> widgets = [];
 
           for (var cartItemText in cartItemTexts) {
-            widgets.add(makeItem(sgLogo, qrImage, cartItemText.title!,
-                cartItemText.first ?? "", cartItemText.stamps!));
+            widgets.add(makeItem(
+                sgLogo,
+                qrImage,
+                cartItemText.title!,
+                cartItemText.first ?? "",
+                cartItemText.second ?? "",
+                cartItemText.stamps!));
           }
 
           return pw.Column(
@@ -106,7 +126,7 @@ class PdfDownloaderViewModel extends BaseViewModel {
   }
 
   pw.Widget makeItem(pw.MemoryImage sgLogo, pw.MemoryImage qrImage, String str1,
-      String str2, String nrOfStamps) {
+      String str2, String str3, String nrOfStamps) {
     return pw.Column(
       children: [
         pw.SizedBox(height: 10),
@@ -123,7 +143,9 @@ class PdfDownloaderViewModel extends BaseViewModel {
           mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
           crossAxisAlignment: pw.CrossAxisAlignment.start,
           children: [
-            pw.Column(
+            pw.SizedBox(
+              width: 220,
+              child: pw.Column(
                 crossAxisAlignment: pw.CrossAxisAlignment.start,
                 children: [
                   pw.SizedBox(height: 16),
@@ -131,8 +153,10 @@ class PdfDownloaderViewModel extends BaseViewModel {
                       style: pw.TextStyle(
                           fontSize: 18, fontWeight: pw.FontWeight.bold)),
                   pw.Text(str2, style: const pw.TextStyle(fontSize: 17)),
-                  pw.SizedBox(height: 10),
-                ]),
+                  pw.Text(str3, style: const pw.TextStyle(fontSize: 17)),
+                ],
+              ),
+            ),
             pw.Column(
                 crossAxisAlignment: pw.CrossAxisAlignment.center,
                 children: [

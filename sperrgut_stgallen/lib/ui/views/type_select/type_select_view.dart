@@ -46,7 +46,7 @@ class TypeSelectView extends StackedView<TypeSelectViewModel> {
                 ListButton(
                   onPressed: viewModel.selectTrashBag,
                   icon: Icons.delete_outlined,
-                  text: "Nicht-Offizielle Abfallsäcke",
+                  text: "Inoffizieller Abfallsack",
                 ),
                 ListButton(
                   onPressed: viewModel.selectOther,

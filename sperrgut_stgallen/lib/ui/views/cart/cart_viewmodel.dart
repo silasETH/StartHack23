@@ -39,7 +39,7 @@ class CartViewModel extends BaseViewModel {
 
         case CartItemType.trashBag:
           {
-            cartItemText.title = "Nicht-Offizieller Abfallsack";
+            cartItemText.title = "Inoffizieller Abfallsack";
             break;
           }
 
@@ -47,9 +47,24 @@ class CartViewModel extends BaseViewModel {
           {
             cartItemText.title = "Sperrmüll";
             cartItemText.first =
-                "weniger als ${(cartItem.weightClass + 1) * 30}kg";
-            cartItemText.second =
                 cartItem.bigItem ? "Übergrösse" : "Normalgrösse";
+            switch (cartItem.weightClass) {
+              case 0:
+                {
+                  cartItemText.second = "Weniger als 30kg";
+                  break;
+                }
+              case 1:
+                {
+                  cartItemText.second = "Zwischen 30kg und 60kg";
+                  break;
+                }
+              default:
+                {
+                  cartItemText.second = "Mehr als 60kg";
+                  break;
+                }
+            }
             break;
           }
       }
