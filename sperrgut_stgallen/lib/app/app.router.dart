@@ -5,7 +5,7 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:flutter/material.dart' as _i13;
+import 'package:flutter/material.dart' as _i14;
 import 'package:flutter/material.dart';
 import 'package:sperrgut_stgallen/ui/views/cart/cart_view.dart' as _i12;
 import 'package:sperrgut_stgallen/ui/views/home/home_view.dart' as _i2;
@@ -15,6 +15,8 @@ import 'package:sperrgut_stgallen/ui/views/mattress_size_select/mattress_size_se
     as _i6;
 import 'package:sperrgut_stgallen/ui/views/other_item_size_select/other_item_size_select_view.dart'
     as _i8;
+import 'package:sperrgut_stgallen/ui/views/other_item_weight_select/other_item_weight_select_view.dart'
+    as _i13;
 import 'package:sperrgut_stgallen/ui/views/pdf_downloader/pdf_downloader_view.dart'
     as _i11;
 import 'package:sperrgut_stgallen/ui/views/sofa_size_select/sofa_size_select_view.dart'
@@ -25,7 +27,7 @@ import 'package:sperrgut_stgallen/ui/views/type_select/type_select_view.dart'
 import 'package:sperrgut_stgallen/ui/views/weight_select/weight_select_view.dart'
     as _i7;
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i14;
+import 'package:stacked_services/stacked_services.dart' as _i15;
 
 class Routes {
   static const homeView = '/home-view';
@@ -50,6 +52,8 @@ class Routes {
 
   static const cartView = '/cart-view';
 
+  static const otherItemWeightSelectView = '/other-item-weight-select-view';
+
   static const all = <String>{
     homeView,
     startupView,
@@ -62,6 +66,7 @@ class Routes {
     infoView,
     pdfDownloaderView,
     cartView,
+    otherItemWeightSelectView,
   };
 }
 
@@ -111,82 +116,93 @@ class StackedRouter extends _i1.RouterBase {
       Routes.cartView,
       page: _i12.CartView,
     ),
+    _i1.RouteDef(
+      Routes.otherItemWeightSelectView,
+      page: _i13.OtherItemWeightSelectView,
+    ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
     _i2.HomeView: (data) {
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i14.MaterialPageRoute<dynamic>(
         builder: (context) => const _i2.HomeView(),
         settings: data,
         maintainState: false,
       );
     },
     _i3.StartupView: (data) {
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i14.MaterialPageRoute<dynamic>(
         builder: (context) => const _i3.StartupView(),
         settings: data,
         maintainState: false,
       );
     },
     _i4.TypeSelectView: (data) {
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i14.MaterialPageRoute<dynamic>(
         builder: (context) => const _i4.TypeSelectView(),
         settings: data,
         maintainState: false,
       );
     },
     _i5.SofaSizeSelectView: (data) {
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i14.MaterialPageRoute<dynamic>(
         builder: (context) => const _i5.SofaSizeSelectView(),
         settings: data,
         maintainState: false,
       );
     },
     _i6.MattressSizeSelectView: (data) {
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i14.MaterialPageRoute<dynamic>(
         builder: (context) => const _i6.MattressSizeSelectView(),
         settings: data,
         maintainState: false,
       );
     },
     _i7.WeightSelectView: (data) {
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i14.MaterialPageRoute<dynamic>(
         builder: (context) => const _i7.WeightSelectView(),
         settings: data,
         maintainState: false,
       );
     },
     _i8.OtherItemSizeSelectView: (data) {
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i14.MaterialPageRoute<dynamic>(
         builder: (context) => const _i8.OtherItemSizeSelectView(),
         settings: data,
         maintainState: false,
       );
     },
     _i9.MapView: (data) {
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i14.MaterialPageRoute<dynamic>(
         builder: (context) => const _i9.MapView(),
         settings: data,
         maintainState: false,
       );
     },
     _i10.InfoView: (data) {
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i14.MaterialPageRoute<dynamic>(
         builder: (context) => const _i10.InfoView(),
         settings: data,
         maintainState: false,
       );
     },
     _i11.PdfDownloaderView: (data) {
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i14.MaterialPageRoute<dynamic>(
         builder: (context) => const _i11.PdfDownloaderView(),
         settings: data,
         maintainState: false,
       );
     },
     _i12.CartView: (data) {
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i14.MaterialPageRoute<dynamic>(
         builder: (context) => const _i12.CartView(),
+        settings: data,
+        maintainState: false,
+      );
+    },
+    _i13.OtherItemWeightSelectView: (data) {
+      return _i14.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i13.OtherItemWeightSelectView(),
         settings: data,
         maintainState: false,
       );
@@ -199,7 +215,7 @@ class StackedRouter extends _i1.RouterBase {
   Map<Type, _i1.StackedRouteFactory> get pagesMap => _pagesMap;
 }
 
-extension NavigatorStateExtension on _i14.NavigationService {
+extension NavigatorStateExtension on _i15.NavigationService {
   Future<dynamic> navigateToHomeView([
     int? routerId,
     bool preventDuplicates = true,
@@ -354,6 +370,20 @@ extension NavigatorStateExtension on _i14.NavigationService {
         transition: transition);
   }
 
+  Future<dynamic> navigateToOtherItemWeightSelectView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.otherItemWeightSelectView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
   Future<dynamic> replaceWithHomeView([
     int? routerId,
     bool preventDuplicates = true,
@@ -502,6 +532,20 @@ extension NavigatorStateExtension on _i14.NavigationService {
         transition,
   ]) async {
     return replaceWith<dynamic>(Routes.cartView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithOtherItemWeightSelectView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.otherItemWeightSelectView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

@@ -37,14 +37,14 @@ class OtherItemSizeSelectView
             child: Column(
               children: [
                 ListButton(
-                  onPressed: () {},
-                  icon: Icons.hotel_outlined,
-                  text: "Einzelmatraze (bis 130 cm)",
+                  onPressed: viewModel.selectSmallItem,
+                  icon: Icons.expand_outlined,
+                  text: "Kleiner als 200 ✕ 90 ✕ 40 cm",
                 ),
                 ListButton(
-                  onPressed: () {},
-                  icon: Icons.king_bed_outlined,
-                  text: "Doppelmatraze (ab 130 cm)",
+                  onPressed: viewModel.selectBigItem,
+                  icon: Icons.unfold_more_double_outlined,
+                  text: "Grösser als 200 ✕ 90 ✕ 40 cm",
                 ),
               ],
             ),

@@ -14,6 +14,7 @@ import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:sperrgut_stgallen/ui/views/pdf_downloader/pdf_downloader_view.dart';
 import 'package:sperrgut_stgallen/ui/views/cart/cart_view.dart';
+import 'package:sperrgut_stgallen/ui/views/other_item_weight_select/other_item_weight_select_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -29,6 +30,7 @@ import 'package:sperrgut_stgallen/ui/views/cart/cart_view.dart';
     MaterialRoute(page: InfoView),
     MaterialRoute(page: PdfDownloaderView),
     MaterialRoute(page: CartView),
+    MaterialRoute(page: OtherItemWeightSelectView),
 // @stacked-route
   ],
   dependencies: [
