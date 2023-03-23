@@ -37,6 +37,10 @@ dependencies:
   
   stacked: ^3.2.0
   stacked_services: ^1.0.0
+  pdf: ^3.9.0
+  printing:
+  open_filex: ^4.3.2
+  path_provider:
 
 dev_dependencies:
   flutter_test:

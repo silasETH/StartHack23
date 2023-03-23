@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:open_filex/open_filex.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../common/app_colors.dart';
+import '../../common/custom_appbar.dart';
+import '../../common/ui_helpers.dart';
 import 'pdf_downloader_viewmodel.dart';
 
 class PdfDownloaderView extends StackedView<PdfDownloaderViewModel> {
@@ -13,9 +17,53 @@ class PdfDownloaderView extends StackedView<PdfDownloaderViewModel> {
     Widget? child,
   ) {
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
-      body: Container(
-        padding: const EdgeInsets.only(left: 25.0, right: 25.0),
+      appBar: CustomAppBar(
+        back: viewModel.pop,
+        home: viewModel.home,
+      ),
+      body: SafeArea(
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(mediumSize),
+              child: Text(
+                "PDF Download",
+                style: TextStyle(
+                  fontSize: getResponsiveMassiveFontSize(context),
+                ),
+              ),
+            ),
+            Center(
+              child: MaterialButton(
+                padding: const EdgeInsets.all(20),
+                color: Colors.white,
+                onPressed: () => openFile("/data/user/0/com.example.sperrgut_stgallen/cache/example.pdf"),
+                child: SizedBox(
+                  height: 120,
+                  width: 300,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: const [
+                      verticalSpaceSmall,
+                      Icon(
+                        Icons.picture_as_pdf_outlined,
+                        color: kcDarkGreyColor,
+                        size: 50,
+                      ),
+                      verticalSpaceSmall,
+                      Text(
+                        'PDF herunterladen',
+                        style: TextStyle(color: kcDarkGreyColor, fontSize: 18),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -25,4 +73,9 @@ class PdfDownloaderView extends StackedView<PdfDownloaderViewModel> {
     BuildContext context,
   ) =>
       PdfDownloaderViewModel();
+
+  Future openFile(String filepath) async {
+    // print(filepath);
+    await OpenFilex.open(filepath);
+  }
 }
