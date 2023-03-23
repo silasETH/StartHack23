@@ -5,11 +5,13 @@ import 'package:sperrgut_stgallen/ui/common/ui_helpers.dart';
 class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   final Function() back;
   final Function() home;
+  bool showBack;
 
-  const CustomAppBar({
+  CustomAppBar({
     super.key,
     required this.back,
     required this.home,
+    this.showBack = true,
   });
 
   @override
