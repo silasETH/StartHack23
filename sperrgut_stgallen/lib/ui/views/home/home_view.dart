@@ -51,44 +51,18 @@ class HomeView extends StackedView<HomeViewModel> {
                 Row(
                 children: [
                 Expanded(
-                  child: MaterialButton(
-                    padding: const EdgeInsets.all(20),
-                    color: Colors.white,
-                    onPressed: () {},
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: const [
-                        Icon(Icons.add, color: kcDarkGreyColor, size: 50,),
-                        verticalSpaceSmall,
-                        Text(
-                          'Sperrgut anmelden',
-                          style: TextStyle(color: kcDarkGreyColor, fontSize: 20),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
+                    child: HomeScreenButton(
+                      label: 'Sperrgut anmelden',
+                      icon: Icons.add,
+                      onPressedFunction: () {},
                     ),
                   ),
-                ),
                 horizontalSpaceMedium,
                 Expanded(
-                  child: MaterialButton(
-                    padding: const EdgeInsets.all(20),
-                    color: Colors.white,
-                    onPressed: () {},
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: const [
-                        Icon(Icons.add, color: kcDarkGreyColor, size: 50,),
-                        verticalSpaceSmall,
-                        Text(
-                          'Sperrgut anmelden',
-                          style: TextStyle(color: kcDarkGreyColor, fontSize: 20),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    ),
+                  child: HomeScreenButton(
+                    label: 'Quittungen',
+                    icon: Icons.receipt_long_sharp,
+                    onPressedFunction: () {},
                   ),
                 ),
                 ]),
@@ -96,44 +70,18 @@ class HomeView extends StackedView<HomeViewModel> {
                 Row(
                 children: [
                 Expanded(
-                  child: MaterialButton(
-                    padding: const EdgeInsets.all(20),
-                    color: Colors.white,
-                    onPressed: () {},
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: const [
-                        Icon(Icons.add, color: kcDarkGreyColor, size: 50,),
-                        verticalSpaceSmall,
-                        Text(
-                          'Sperrgut anmelden',
-                          style: TextStyle(color: kcDarkGreyColor, fontSize: 20),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    ),
+                  child: HomeScreenButton(
+                    label: 'Informationen',
+                    icon: Icons.info_outline,
+                    onPressedFunction: () {},
                   ),
                 ),
                 horizontalSpaceMedium,
                 Expanded(
-                  child: MaterialButton(
-                    padding: const EdgeInsets.all(20),
-                    color: Colors.white,
-                    onPressed: () {},
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: const [
-                        Icon(Icons.add, color: kcDarkGreyColor, size: 50,),
-                        verticalSpaceSmall,
-                        Text(
-                          'Sperrgut anmelden',
-                          style: TextStyle(color: kcDarkGreyColor, fontSize: 20),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    ),
+                  child: HomeScreenButton(
+                    label: 'Verkaufsstellen finden',
+                    icon: Icons.map_outlined,
+                    onPressedFunction: () {},
                   ),
                 ),
                 ],),
@@ -151,4 +99,39 @@ class HomeView extends StackedView<HomeViewModel> {
     BuildContext context,
   ) =>
       HomeViewModel();
+}
+
+class HomeScreenButton extends StatelessWidget {
+  final String label;
+  final IconData icon;
+  final Function()? onPressedFunction;
+
+  const HomeScreenButton({
+    super.key, required this.label, required this.icon, this.onPressedFunction,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialButton(
+      padding: const EdgeInsets.all(20),
+      color: Colors.white,
+      onPressed: () {},
+      child: SizedBox(
+        height: 120,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Icon(icon, color: kcDarkGreyColor, size: 50,),
+            verticalSpaceSmall,
+            Text(
+              label,
+              style: const TextStyle(color: kcDarkGreyColor, fontSize: 18),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
