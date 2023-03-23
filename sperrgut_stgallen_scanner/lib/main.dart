@@ -69,6 +69,35 @@ class _HomeState extends State<Home> {
     final recognizedText = await _textRecognizer.processImage(inputImage);
     if (int.tryParse(recognizedText.text) != null) {
       code = int.parse(recognizedText.text);
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => Expanded(
+              child: Container(
+                  color: Colors.green,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "3",
+                        style: TextStyle(fontSize: 42, color: Colors.white),
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        "Marken",
+                        style: TextStyle(fontSize: 20, color: Colors.white),
+                      ),
+                      OutlinedButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          style: OutlinedButton.styleFrom(
+                            side: BorderSide(width: 5.0, color: Colors.blue),
+                          ),
+                          child: Text(
+                            'OK',
+                            style: TextStyle(fontSize: 30, color: Colors.white),
+                          ))
+                    ],
+                  )))));
     }
     _isBusy = false;
     if (mounted) {
