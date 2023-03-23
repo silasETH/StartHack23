@@ -1,5 +1,6 @@
 import 'package:sperrgut_stgallen/app/app.locator.dart';
 import 'package:sperrgut_stgallen/app/app.router.dart';
+import 'package:sperrgut_stgallen/services/helper_service.dart';
 import 'package:sperrgut_stgallen/services/user_data_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -7,72 +8,12 @@ import 'package:stacked_services/stacked_services.dart';
 class CartViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final _userDataService = locator<UserDataService>();
+  final _helperService = locator<HelperService>();
+
+  List<CartItemText> get cartItemTexts => _helperService.cartItemTexts;
 
   void registerItem() {
     _navigationService.navigateToTypeSelectView();
-  }
-
-  List<CartItemText> get cartItemTexts {
-    List<CartItemText> cartItemTexts = [];
-
-    for (var cartItem in _userDataService.cart) {
-      CartItemText cartItemText = CartItemText();
-
-      cartItemText.stamps = cartItem.stampCount.toString();
-
-      switch (cartItem.type) {
-        case CartItemType.sofa:
-          {
-            cartItemText.title = "Sofa";
-            cartItemText.first = cartItem.bigItem
-                ? "3 oder mehr Sitzplätze"
-                : "bis zu 2 Sitzplätze";
-            break;
-          }
-
-        case CartItemType.mattress:
-          {
-            cartItemText.title = "Matratze";
-            cartItemText.first = cartItem.bigItem ? "Doppelt" : "Einzel";
-            break;
-          }
-
-        case CartItemType.trashBag:
-          {
-            cartItemText.title = "Inoffizieller Abfallsack";
-            break;
-          }
-
-        default:
-          {
-            cartItemText.title = "Sperrmüll";
-            cartItemText.first =
-                cartItem.bigItem ? "Übergrösse" : "Normalgrösse";
-            switch (cartItem.weightClass) {
-              case 0:
-                {
-                  cartItemText.second = "Weniger als 30kg";
-                  break;
-                }
-              case 1:
-                {
-                  cartItemText.second = "Zwischen 30kg und 60kg";
-                  break;
-                }
-              default:
-                {
-                  cartItemText.second = "Mehr als 60kg";
-                  break;
-                }
-            }
-            break;
-          }
-      }
-
-      cartItemTexts.add(cartItemText);
-    }
-
-    return cartItemTexts;
   }
 
   String get total =>
@@ -92,11 +33,4 @@ class CartViewModel extends BaseViewModel {
     _navigationService
         .popUntil((route) => route.settings.name == Routes.homeView);
   }
-}
-
-class CartItemText {
-  String? title;
-  String? first;
-  String? second;
-  String? stamps;
 }

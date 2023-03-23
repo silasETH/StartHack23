@@ -27,35 +27,34 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: Theme.of(context).copyWith(
-        primaryColor: kcPrimaryColor,
-        focusColor: kcPrimaryColor,
-        scaffoldBackgroundColor: kcBackgroundColor,
-        textTheme: const TextTheme(
-          displayLarge: TextStyle(
-            fontSize: 36.0,
-            color: kcDarkGreyColor,
-            fontWeight: FontWeight.bold,
-          ),
-          titleLarge: TextStyle(
-          fontSize: 20.0,
-          color: kcDarkGreyColor,
-          fontWeight: FontWeight.bold,
-        ),
-          titleMedium: TextStyle(
-            fontSize: 18.0,
-            color: kcDarkGreyColor,
-            fontWeight: FontWeight.bold,
-          ),
-          bodyLarge: TextStyle(
-            fontSize: 18.0,
-            color: kcDarkGreyColor,
-          ),
-          bodyMedium: TextStyle(
-            fontSize: 16.0,
-            color: kcDarkGreyColor,
-          ),
-        )
-      ),
+          primaryColor: kcPrimaryColor,
+          focusColor: kcPrimaryColor,
+          scaffoldBackgroundColor: kcBackgroundColor,
+          textTheme: const TextTheme(
+            displayLarge: TextStyle(
+              fontSize: 36.0,
+              color: kcDarkGreyColor,
+              fontWeight: FontWeight.bold,
+            ),
+            titleLarge: TextStyle(
+              fontSize: 20.0,
+              color: kcDarkGreyColor,
+              fontWeight: FontWeight.bold,
+            ),
+            titleMedium: TextStyle(
+              fontSize: 18.0,
+              color: kcDarkGreyColor,
+              fontWeight: FontWeight.bold,
+            ),
+            bodyLarge: TextStyle(
+              fontSize: 18.0,
+              color: kcDarkGreyColor,
+            ),
+            bodyMedium: TextStyle(
+              fontSize: 16.0,
+              color: kcDarkGreyColor,
+            ),
+          )),
       initialRoute: Routes.startupView,
       onGenerateRoute: StackedRouter().onGenerateRoute,
       navigatorKey: StackedService.navigatorKey,

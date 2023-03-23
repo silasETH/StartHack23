@@ -506,7 +506,8 @@ class MockDialogService extends _i1.Mock implements _i3.DialogService {
       _i4.BuildContext,
       _i3.DialogRequest<dynamic>,
       dynamic Function(_i3.DialogResponse<dynamic>),
-    )? builder,
+    )?
+        builder,
   }) =>
       super.noSuchMethod(
         Invocation.method(
