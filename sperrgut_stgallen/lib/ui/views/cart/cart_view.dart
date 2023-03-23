@@ -77,23 +77,28 @@ class CartView extends StackedView<CartViewModel> {
             padding: const EdgeInsets.all(smallSize),
             child: Row(
               children: [
-                MaterialButton(
-                  onPressed: viewModel.salePoints,
-                  child: Container(
-                    margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                    padding: const EdgeInsets.all(smallSize),
-                    child: const Text(
-                      "Verkaufsstellen",
-                      style: TextStyle(
-                        fontSize: 18,
-                        shadows: [
-                          Shadow(color: kcDarkGreyColor, offset: Offset(0, -5))
-                        ],
-                        color: Colors.transparent,
-                        decoration: TextDecoration.underline,
-                        decorationColor: kcDarkGreyColor,
-                        decorationThickness: 2,
-                        decorationStyle: TextDecorationStyle.solid,
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 16, 0),
+                  child: MaterialButton(
+                    onPressed: viewModel.salePoints,
+                    child: Container(
+                      margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                      padding:
+                          const EdgeInsets.fromLTRB(0, smallSize, 0, smallSize),
+                      child: const Text(
+                        "Verkaufsstellen",
+                        style: TextStyle(
+                          fontSize: 18,
+                          shadows: [
+                            Shadow(
+                                color: kcDarkGreyColor, offset: Offset(0, -5))
+                          ],
+                          color: Colors.transparent,
+                          decoration: TextDecoration.underline,
+                          decorationColor: kcDarkGreyColor,
+                          decorationThickness: 2,
+                          decorationStyle: TextDecorationStyle.solid,
+                        ),
                       ),
                     ),
                   ),
@@ -189,19 +194,22 @@ class CartItems extends StatelessWidget {
     widgets.add(
       MaterialButton(
         onPressed: onAdd,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(
-              Icons.add,
-              size: mediumSize,
-            ),
-            const SizedBox(width: smallSize),
-            Text(
-              "Weiteres Sperrgut erfassen",
-              style: Theme.of(context).textTheme.bodyMedium,
-            )
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(
+                Icons.add,
+                size: mediumSize,
+              ),
+              const SizedBox(width: smallSize),
+              Text(
+                "Weiteres Sperrgut erfassen",
+                style: Theme.of(context).textTheme.bodyMedium,
+              )
+            ],
+          ),
         ),
       ),
     );
