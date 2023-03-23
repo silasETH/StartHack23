@@ -29,7 +29,12 @@ class MyApp extends StatelessWidget {
       theme: Theme.of(context).copyWith(
           primaryColor: kcPrimaryColor,
           focusColor: kcPrimaryColor,
+          highlightColor: kcPrimaryColor.withAlpha(10),
+          splashColor: kcPrimaryColor.withAlpha(20),
           scaffoldBackgroundColor: kcBackgroundColor,
+          colorScheme: ColorScheme.fromSwatch(
+            accentColor: kcPrimaryColor,
+          ),
           textTheme: const TextTheme(
             displayLarge: TextStyle(
               fontSize: 36.0,
