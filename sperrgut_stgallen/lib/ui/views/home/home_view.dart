@@ -24,13 +24,14 @@ class HomeView extends StackedView<HomeViewModel> {
   ) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text(
+          title: const AutoSizeText(
             'Sperrgut Stadt St. Gallen',
             style: TextStyle(
               fontSize: 18.0,
               color: kcDarkGreyColor,
               fontWeight: FontWeight.bold,
             ),
+            maxLines: 1,
           ),
           leading: const Padding(
             padding: EdgeInsets.fromLTRB(12, 0, 0, 0),
