@@ -1,22 +1,20 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:printing/printing.dart';
-import 'package:sperrgut_stgallen/ui/common/ui_helpers.dart';
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
+import 'package:sperrgut_stgallen/services/user_data_service.dart';
+import 'package:sperrgut_stgallen/ui/views/cart/cart_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../../../app/app.locator.dart';
 import '../../../app/app.router.dart';
 
-import 'package:pdf/pdf.dart';
-import 'package:pdf/widgets.dart' as pw;
-import 'package:open_filex/open_filex.dart';
-
 class PdfDownloaderViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
+  final _userDataService = locator<UserDataService>();
 
   void pop() {
     _navigationService.back();
@@ -25,6 +23,54 @@ class PdfDownloaderViewModel extends BaseViewModel {
   void home() {
     _navigationService
         .popUntil((route) => route.settings.name == Routes.homeView);
+  }
+
+  List<CartItemText> get cartItemTexts {
+    List<CartItemText> cartItemTexts = [];
+
+    for (var cartItem in _userDataService.cart) {
+      CartItemText cartItemText = CartItemText();
+
+      cartItemText.stamps = cartItem.stampCount.toString();
+
+      switch (cartItem.type) {
+        case CartItemType.sofa:
+          {
+            cartItemText.title = "Sofa";
+            cartItemText.first = cartItem.bigItem
+                ? "3 oder mehr Sitzplätze"
+                : "bis zu 2 Sitzplätze";
+            break;
+          }
+
+        case CartItemType.mattress:
+          {
+            cartItemText.title = "Matratze";
+            cartItemText.first = cartItem.bigItem ? "Doppelt" : "Einzel";
+            break;
+          }
+
+        case CartItemType.trashBag:
+          {
+            cartItemText.title = "Nicht-Offizieller Abfallsack";
+            break;
+          }
+
+        default:
+          {
+            cartItemText.title = "Sperrmüll";
+            cartItemText.first =
+                "weniger als ${(cartItem.weightClass + 1) * 30}kg";
+            cartItemText.second =
+                cartItem.bigItem ? "Übergrösse" : "Normalgrösse";
+            break;
+          }
+      }
+
+      cartItemTexts.add(cartItemText);
+    }
+
+    return cartItemTexts;
   }
 
   Future<String> makePdf() async {
@@ -38,126 +84,15 @@ class PdfDownloaderViewModel extends BaseViewModel {
     pdf.addPage(pw.Page(
         pageFormat: PdfPageFormat.a4,
         build: (pw.Context context) {
-          return pw.Column(
-            children: [
-              pw.Row(children: [
-                pw.SizedBox(width: 19, height: 19, child: pw.Image(sgLogo)),
-                pw.SizedBox(width: 9),
-                pw.Text(
-                  "Entsorgung Stadt St. Gallen",
-                  style: pw.TextStyle(
-                      fontSize: 19, fontWeight: pw.FontWeight.bold),
-                )
-              ]),
-              pw.SizedBox(height: 10),
-              pw.Row(
-                  mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: pw.CrossAxisAlignment.start,
-                  children: [
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.start,
-                        children: [
-                          pw.SizedBox(height: 16),
-                          pw.Text("Sofa",
-                              style: pw.TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: pw.FontWeight.bold)),
-                          pw.Text("mehr als 3 Sitzplätze",
-                              style: const pw.TextStyle(fontSize: 17)),
-                          pw.SizedBox(height: 10),
-                          pw.Container(
-                              width: 180,
-                              height: 46,
-                              padding: pw.EdgeInsets.all(10),
-                              decoration: pw.BoxDecoration(
-                                  border: pw.Border.all(
-                                      width: 1, color: PdfColors.black)),
-                              child: pw.Text(
-                                  "1. Etikette zuschneiden \n2. Gut sichtbar befestigen",
-                                  style: pw.TextStyle(color: PdfColors.black)))
-                        ]),
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.center,
-                        children: [
-                          pw.Text("2",
-                              style: pw.TextStyle(
-                                  fontSize: 72,
-                                  fontWeight: pw.FontWeight.bold)),
-                          pw.Text("Marken",
-                              style: const pw.TextStyle(fontSize: 16))
-                        ]),
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.center,
-                        children: [
-                          pw.SizedBox(
-                            width: 110,
-                            height: 110,
-                            child: pw.Image(qrImage),
-                          ),
-                          pw.SizedBox(height: 7),
-                          pw.Text("31415926",
-                              style: const pw.TextStyle(fontSize: 18))
-                        ])
-                  ]),
-              pw.SizedBox(height: 10),
-              pw.Divider(),
-              pw.SizedBox(height: 10),
-              pw.Row(children: [
-                pw.SizedBox(width: 19, height: 19, child: pw.Image(sgLogo)),
-                pw.SizedBox(width: 9),
-                pw.Text(
-                  "Entsorgung Stadt St. Gallen",
-                  style: pw.TextStyle(
-                      fontSize: 19, fontWeight: pw.FontWeight.bold),
-                )
-              ]),
-              pw.SizedBox(height: 10),
-              pw.Row(
-                  mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: pw.CrossAxisAlignment.start,
-                  children: [
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.start,
-                        children: [
-                          pw.SizedBox(height: 16),
-                          pw.Text("Sofa",
-                              style: pw.TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: pw.FontWeight.bold)),
-                          pw.Text("mehr als 3 Sitzplätze",
-                              style: const pw.TextStyle(fontSize: 17)),
-                          pw.SizedBox(height: 10),
-                        ]),
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.center,
-                        children: [
-                          pw.Text("2",
-                              style: pw.TextStyle(
-                                  fontSize: 72,
-                                  fontWeight: pw.FontWeight.bold)),
-                          pw.Text("Marken",
-                              style: const pw.TextStyle(fontSize: 16))
-                        ]),
-                    pw.Column(
-                        crossAxisAlignment: pw.CrossAxisAlignment.center,
-                        children: [
-                          pw.SizedBox(
-                            width: 110,
-                            height: 110,
-                            child: pw.Image(qrImage),
-                          ),
-                          pw.SizedBox(height: 7),
-                          pw.Text("31415926",
-                              style: const pw.TextStyle(fontSize: 18))
-                        ])
-                  ]),
-              pw.SizedBox(height: 10),
-              pw.Divider(),
-              pw.SizedBox(height: 10),
-              
-              makeItem(sgLogo, qrImage, "Sofa", "mehr als zwei Sitzplätze", 2)
+          List<pw.Widget> widgets = [];
 
-            ],
+          for (var cartItemText in cartItemTexts) {
+            widgets.add(makeItem(sgLogo, qrImage, cartItemText.title!,
+                cartItemText.first ?? "", cartItemText.stamps!));
+          }
+
+          return pw.Column(
+            children: widgets,
           ); // Center
         })); // Page
 
@@ -170,19 +105,21 @@ class PdfDownloaderViewModel extends BaseViewModel {
     // await OpenFilex.open(file.path);
   }
 
-  pw.Widget makeItem(pw.MemoryImage sgLogo, pw.MemoryImage qrImage, String str1, String str2, int nrOfStamps) {
-
-    return pw.Column(children: [
-      pw.Row(children: [
-        pw.SizedBox(width: 19, height: 19, child: pw.Image(sgLogo)),
-        pw.SizedBox(width: 9),
-        pw.Text(
-          "Entsorgung Stadt St. Gallen",
-          style: pw.TextStyle(fontSize: 19, fontWeight: pw.FontWeight.bold),
-        )
-      ]),
-      pw.SizedBox(height: 10),
-      pw.Row(
+  pw.Widget makeItem(pw.MemoryImage sgLogo, pw.MemoryImage qrImage, String str1,
+      String str2, String nrOfStamps) {
+    return pw.Column(
+      children: [
+        pw.SizedBox(height: 10),
+        pw.Row(children: [
+          pw.SizedBox(width: 19, height: 19, child: pw.Image(sgLogo)),
+          pw.SizedBox(width: 9),
+          pw.Text(
+            "Entsorgung Stadt St. Gallen",
+            style: pw.TextStyle(fontSize: 19, fontWeight: pw.FontWeight.bold),
+          )
+        ]),
+        pw.SizedBox(height: 10),
+        pw.Row(
           mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
           crossAxisAlignment: pw.CrossAxisAlignment.start,
           children: [
@@ -193,14 +130,13 @@ class PdfDownloaderViewModel extends BaseViewModel {
                   pw.Text(str1,
                       style: pw.TextStyle(
                           fontSize: 18, fontWeight: pw.FontWeight.bold)),
-                  pw.Text(str2,
-                      style: const pw.TextStyle(fontSize: 17)),
+                  pw.Text(str2, style: const pw.TextStyle(fontSize: 17)),
                   pw.SizedBox(height: 10),
                 ]),
             pw.Column(
                 crossAxisAlignment: pw.CrossAxisAlignment.center,
                 children: [
-                  pw.Text(nrOfStamps.toString(),
+                  pw.Text(nrOfStamps,
                       style: pw.TextStyle(
                           fontSize: 72, fontWeight: pw.FontWeight.bold)),
                   pw.Text("Marken", style: const pw.TextStyle(fontSize: 16))
@@ -216,7 +152,11 @@ class PdfDownloaderViewModel extends BaseViewModel {
                   pw.SizedBox(height: 7),
                   pw.Text("31415926", style: const pw.TextStyle(fontSize: 18))
                 ])
-          ])
-    ]);
+          ],
+        ),
+        pw.SizedBox(height: 10),
+        pw.Divider(),
+      ],
+    );
   }
 }
