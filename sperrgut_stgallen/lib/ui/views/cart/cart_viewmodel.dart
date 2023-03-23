@@ -68,10 +68,13 @@ class CartViewModel extends BaseViewModel {
   }
 
   void salePoints() {
-    print("SalePoints");
+    _navigationService.navigateToMapView();
   }
 
-  void back() {}
+  void back() {
+    _userDataService.createNewCart();
+    home();
+  }
 
   void home() {
     _navigationService
