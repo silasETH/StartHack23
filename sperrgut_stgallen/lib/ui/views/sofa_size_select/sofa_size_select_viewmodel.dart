@@ -9,10 +9,14 @@ class SofaSizeSelectViewModel extends BaseViewModel {
   final UserDataService _userDataService = locator<UserDataService>();
 
   void selectSmallItem() {
+    _userDataService.setItemSize(false);
+    _userDataService.tryAddingItemToCart();
     _navigationService.navigateToCartView();
   }
 
   void selectBigItem() {
+    _userDataService.setItemSize(true);
+    _userDataService.tryAddingItemToCart();
     _navigationService.navigateToCartView();
   }
 
