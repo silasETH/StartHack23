@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:sperrgut_stgallen/app/app.bottomsheets.dart';
 import 'package:sperrgut_stgallen/app/app.dialogs.dart';
 import 'package:sperrgut_stgallen/app/app.locator.dart';
@@ -19,6 +20,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return MaterialApp(
       title: 'Flutter Demo',
       theme: Theme.of(context).copyWith(

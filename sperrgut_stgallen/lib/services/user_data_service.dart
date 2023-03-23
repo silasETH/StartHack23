@@ -7,6 +7,14 @@ import 'package:path_provider/path_provider.dart';
 class UserDataService {
   CartItem currentCartItem = CartItem();
   List<CartItem> cart = [];
+  List<Receipt> receipts = [];
+
+  void resetData()
+  {
+    currentCartItem = CartItem();
+    cart = [];
+    receipts = [];
+  }
 
   Future<File> get localFile async {
     final directory = await getApplicationDocumentsDirectory();
@@ -19,7 +27,7 @@ class UserDataService {
     final file = await localFile;
     IOSink io = file.openWrite();
     String id = "TRSH";
-    int version = 0;
+    int version = 1;
     io.add(id.codeUnits);
     io.add([version]);
     io.add([cart.length]);
@@ -32,18 +40,24 @@ class UserDataService {
 
   void loadFromDisk() async
   {
+    resetData();
     try{
       final file = await localFile;
       var io = IOSource(file);
-      String id = String.fromCharCodes([io.next(), io.next(), io.next(), io.next()]);
+      String id = String.fromCharCodes([io.nextUint8(), io.nextUint8(), io.nextUint8(), io.nextUint8()]);
       if(id != "TRSH"){
         print("file id doesn't match");
         return;
       }
-      int version = io.next();
-      int length = io.next();
+      int version = io.nextUint8();
+      int length = io.nextUint8();
       for(var i = 0; i < length; i++){
         cart.add(await CartItem.load(io, version));
+      }
+      if(version >= 1){
+        int length = io.nextUint8();
+        for(var i = 0; i < length; i++)
+          receipts.add(await Receipt.load(io, version));
       }
       assert(cart.length == length);
     }catch(_){}
@@ -56,6 +70,7 @@ class UserDataService {
   void createNewCart() {
     currentCartItem = CartItem();
     cart = [];
+    saveToDisk();
   }
 
   bool tryAddingItemToCart() {
@@ -102,6 +117,18 @@ class UserDataService {
     cart.removeAt(index);
     return true;
   }
+
+  void buyCart(bool paid)
+  {
+    receipts.add(Receipt.create(cart, paid));
+    createNewCart();
+    saveToDisk();
+  }
+
+  Receipt getLatestPurchase()
+  {
+    return receipts.last;
+  }
 }
 
 enum CartItemType
@@ -123,9 +150,9 @@ class CartItem {
   static Future<CartItem> load(IOSource io, int version) async
   {
     CartItem result = CartItem();
-    result.type = CartItemType.values[io.next()];
-    result.bigItem = io.next() == 0 ? false : true;
-    result.weightClass = io.next();
+    result.type = CartItemType.values[io.nextUint8()];
+    result.bigItem = io.nextUint8() == 0 ? false : true;
+    result.weightClass = io.nextUint8();
     return result;
   }
 
@@ -133,6 +160,43 @@ class CartItem {
     io.add([type.index, bigItem ? 1 : 0, weightClass]);
   }
 }
+
+class Receipt {
+  List<CartItem> items = [];
+  List<int> code = [];
+  bool paid = false;
+
+  static create(List<CartItem> items, bool paid)
+  {
+    Receipt result = Receipt();
+    result.items = items;
+    result.code = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+    result.paid = paid;
+  }
+
+  void save(IOSink io)
+  {
+    io.add([items.length]);
+    for(var item in items){
+      item.save(io);
+    }
+    io.add(code);
+    io.add([paid ? 1 : 0]);
+  }
+
+  static Future<Receipt> load(IOSource io, version) async
+  {
+    Receipt result = Receipt();
+    int length = io.nextUint8();
+    for(var i = 0; i < length; i++){
+      result.items.add(await CartItem.load(io, version));
+    }
+    result.code = io.nextUint8List(9);
+    result.paid = io.nextUint8() != 0;
+    return result;
+  }
+}
+
 class IOSource
 {
   late Uint8List data;
@@ -143,8 +207,18 @@ class IOSource
     data = file.readAsBytesSync();
   }
 
-  int next()
+  int nextUint8()
   {
     return data[index++];
   }
+
+  List<int> nextUint8List(int count)
+  {
+    List<int> result = [];
+    for(var i = 0; i < count; i++) {
+        result.add(nextUint8());
+    }
+    return result;
+  }
+  
 }
