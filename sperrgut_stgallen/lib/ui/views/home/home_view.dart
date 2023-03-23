@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:sperrgut_stgallen/ui/common/app_colors.dart';
@@ -156,10 +157,12 @@ class HomeScreenButton extends StatelessWidget {
               size: 50,
             ),
             verticalSpaceSmall,
-            Text(
+            AutoSizeText(
               label,
               style: Theme.of(context).textTheme.titleMedium,
               textAlign: TextAlign.center,
+              maxLines: 2,
+              wrapWords: false,
             ),
           ],
         ),

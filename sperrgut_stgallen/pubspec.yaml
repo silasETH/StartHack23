@@ -41,6 +41,7 @@ dependencies:
   printing:
   open_filex: ^4.3.2
   path_provider:
+  auto_size_text: ^3.0.0
 
 dev_dependencies:
   flutter_test:
