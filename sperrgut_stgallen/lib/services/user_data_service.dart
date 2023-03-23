@@ -64,7 +64,7 @@ class UserDataService {
     if(currentCartItem.type != CartItemType.other) {
       currentCartItem.weightClass = 0;
     }
-    if(currentCartItem.type == CartItemType.trashBin) {
+    if(currentCartItem.type == CartItemType.trashBag) {
       currentCartItem.bigItem = false;
     }
     cart.add(currentCartItem);
@@ -107,9 +107,9 @@ enum CartItemType
 {
   undefined,
   sofa,
-  matres,
+  mattress,
   other,
-  trashBin,
+  trashBag,
 }
 
 class CartItem {

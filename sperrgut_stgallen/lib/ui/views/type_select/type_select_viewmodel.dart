@@ -14,12 +14,12 @@ class TypeSelectViewModel extends BaseViewModel {
   }
 
   void selectMattress() {
-    _userDataService.setItemType(CartItemType.matres);
+    _userDataService.setItemType(CartItemType.mattress);
     _navigationService.navigateToMattressSizeSelectView();
   }
 
   void selectTrashBag() {
-    _userDataService.setItemType(CartItemType.trashBin);
+    _userDataService.setItemType(CartItemType.trashBag);
     _userDataService.tryAddingItemToCart();
     _navigationService.navigateToCartView();
   }

@@ -26,14 +26,14 @@ class CartViewModel extends BaseViewModel {
             break;
           }
 
-        case CartItemType.matres:
+        case CartItemType.mattress:
           {
             cartItemText.title = "Matratze";
             cartItemText.first = cartItem.bigItem ? "Doppelt" : "Einzel";
             break;
           }
 
-        case CartItemType.trashBin:
+        case CartItemType.trashBag:
           {
             cartItemText.title = "Nicht-Offizieller Abfallsack";
             break;
