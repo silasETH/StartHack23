@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:sperrgut_stgallen/ui/common/custom_appbar.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../common/app_colors.dart';
 import '../../common/ui_helpers.dart';
 import 'map_viewmodel.dart';
 
@@ -16,7 +15,10 @@ class MapView extends StackedView<MapViewModel> {
     Widget? child,
   ) {
     return Scaffold(
-      appBar: CustomAppBar(back: viewModel.pop, home: viewModel.home,),
+      appBar: CustomAppBar(
+        back: viewModel.pop,
+        home: viewModel.home,
+      ),
       body: SafeArea(
         child: Column(
           children: [
@@ -29,7 +31,11 @@ class MapView extends StackedView<MapViewModel> {
                 ),
               ),
             ),
-            const Image(image: AssetImage('lib/assets/mocked_map.png'))
+            const Expanded(
+                child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Image(image: AssetImage('lib/assets/mocked_map.png')),
+            ))
           ],
         ),
       ),

@@ -4,27 +4,19 @@ import 'package:sperrgut_stgallen/services/user_data_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class TypeSelectViewModel extends BaseViewModel {
+class CartViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final _userDataService = locator<UserDataService>();
 
-  void selectSofa() {
-    _userDataService.setItemType(CartItemType.sofa);
-    _navigationService.navigateToSofaSizeSelectView();
+  void pay() {
+    print("Pay");
   }
 
-  void selectMattress() {
-    _userDataService.setItemType(CartItemType.matres);
-    _navigationService.navigateToMattressSizeSelectView();
+  void salePoints() {
+    print("SalePoints");
   }
 
-  void selectTrashBag() {}
-
-  void selectOther() {}
-
-  void back() {
-    _navigationService.back();
-  }
+  void back() {}
 
   void home() {
     _navigationService

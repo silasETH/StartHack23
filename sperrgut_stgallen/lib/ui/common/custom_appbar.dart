@@ -5,34 +5,38 @@ import 'package:sperrgut_stgallen/ui/common/ui_helpers.dart';
 class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   final Function() back;
   final Function() home;
+  bool showBack;
 
-  const CustomAppBar({
+  CustomAppBar({
     super.key,
     required this.back,
     required this.home,
+    this.showBack = true,
   });
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       leadingWidth: 140,
-      leading: MaterialButton(
-        onPressed: back,
-        child: Row(
-          children: [
-            const Icon(
-              Icons.arrow_back_ios,
-              color: kcPrimaryColor,
-            ),
-            Text(
-              "Zurück",
-              style: TextStyle(
-                  color: kcPrimaryColor,
-                  fontSize: getResponsiveMediumFontSize(context)),
-            ),
-          ],
-        ),
-      ),
+      leading: (showBack)
+          ? MaterialButton(
+              onPressed: back,
+              child: Row(
+                children: [
+                  const Icon(
+                    Icons.arrow_back_ios,
+                    color: kcPrimaryColor,
+                  ),
+                  Text(
+                    "Zurück",
+                    style: TextStyle(
+                        color: kcPrimaryColor,
+                        fontSize: getResponsiveMediumFontSize(context)),
+                  ),
+                ],
+              ),
+            )
+          : const SizedBox(),
       backgroundColor: Colors.white,
       actions: [
         MaterialButton(

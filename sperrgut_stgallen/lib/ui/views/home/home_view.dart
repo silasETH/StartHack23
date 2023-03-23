@@ -28,10 +28,10 @@ class HomeView extends StackedView<HomeViewModel> {
             child: Image(image: AssetImage('lib/assets/logo_sg.png')),
           ),
           backgroundColor: Colors.white,
-          actions: const [
-            Padding(
-              padding: EdgeInsets.fromLTRB(0, 0, 12, 0),
-              child: Icon(
+          actions: [
+            MaterialButton(
+              onPressed: viewModel.info,
+              child: const Icon(
                 Icons.info_outline,
                 color: kcDarkGreyColor,
                 size: 30,
