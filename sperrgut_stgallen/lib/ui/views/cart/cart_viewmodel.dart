@@ -8,6 +8,10 @@ class CartViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final _userDataService = locator<UserDataService>();
 
+  void registerItem() {
+    _navigationService.navigateToTypeSelectView();
+  }
+
   List<CartItemText> get cartItemTexts {
     List<CartItemText> cartItemTexts = [];
 

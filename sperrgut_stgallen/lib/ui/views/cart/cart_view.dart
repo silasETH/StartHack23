@@ -24,7 +24,10 @@ class CartView extends StackedView<CartViewModel> {
       body: Column(
         children: [
           Expanded(
-            child: CartItems(cartItemTexts: viewModel.cartItemTexts),
+            child: CartItems(
+              cartItemTexts: viewModel.cartItemTexts,
+              onAdd: viewModel.registerItem,
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(mediumSize),
@@ -101,15 +104,16 @@ class CartView extends StackedView<CartViewModel> {
 
 class CartItems extends StatelessWidget {
   final List<CartItemText> cartItemTexts;
+  final Function() onAdd;
 
-  CartItems({required this.cartItemTexts});
+  CartItems({required this.cartItemTexts, required this.onAdd});
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> cartItemWidgets = [];
+    List<Widget> widgets = [];
 
     for (var cartItemText in cartItemTexts) {
-      cartItemWidgets.add(
+      widgets.add(
         Padding(
           padding: const EdgeInsets.all(mediumSize),
           child: Column(
@@ -165,8 +169,29 @@ class CartItems extends StatelessWidget {
       );
     }
 
+    widgets.add(
+      MaterialButton(
+        onPressed: onAdd,
+        child: Row(
+          children: [
+            const SizedBox(
+              width: massiveSize,
+              child: Icon(
+                Icons.add,
+                size: mediumSize,
+              ),
+            ),
+            Text(
+              "Weiteres Sperrgut erfassen",
+              style: TextStyle(fontSize: getResponsiveMediumFontSize(context)),
+            )
+          ],
+        ),
+      ),
+    );
+
     return ListView(
-      children: cartItemWidgets,
+      children: widgets,
     );
   }
 }
