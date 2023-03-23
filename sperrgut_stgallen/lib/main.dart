@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:sperrgut_stgallen/app/app.bottomsheets.dart';
 import 'package:sperrgut_stgallen/app/app.dialogs.dart';
 import 'package:sperrgut_stgallen/app/app.locator.dart';
@@ -19,33 +20,36 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return MaterialApp(
       title: 'Flutter Demo',
       theme: Theme.of(context).copyWith(
-        primaryColor: kcPrimaryColor,
-        focusColor: kcPrimaryColor,
-        scaffoldBackgroundColor: kcBackgroundColor,
-        textTheme: const TextTheme(
-          titleLarge:TextStyle(
-          fontSize: 36.0,
-          color: kcDarkGreyColor,
-          fontWeight: FontWeight.bold,
-        ),
-          titleMedium: TextStyle(
-            fontSize: 18.0,
-            color: kcDarkGreyColor,
-            fontWeight: FontWeight.bold,
-          ),
-          bodyLarge: TextStyle(
-            fontSize: 18.0,
-            color: kcDarkGreyColor,
-          ),
-          bodyMedium: TextStyle(
-            fontSize: 16.0,
-            color: kcDarkGreyColor,
-          ),
-        )
-      ),
+          primaryColor: kcPrimaryColor,
+          focusColor: kcPrimaryColor,
+          scaffoldBackgroundColor: kcBackgroundColor,
+          textTheme: const TextTheme(
+            titleLarge: TextStyle(
+              fontSize: 36.0,
+              color: kcDarkGreyColor,
+              fontWeight: FontWeight.bold,
+            ),
+            titleMedium: TextStyle(
+              fontSize: 18.0,
+              color: kcDarkGreyColor,
+              fontWeight: FontWeight.bold,
+            ),
+            bodyLarge: TextStyle(
+              fontSize: 18.0,
+              color: kcDarkGreyColor,
+            ),
+            bodyMedium: TextStyle(
+              fontSize: 16.0,
+              color: kcDarkGreyColor,
+            ),
+          )),
       initialRoute: Routes.startupView,
       onGenerateRoute: StackedRouter().onGenerateRoute,
       navigatorKey: StackedService.navigatorKey,
