@@ -17,13 +17,23 @@ class CartViewModel extends BaseViewModel {
     _navigationService.navigateToTypeSelectView();
   }
 
+  String get price =>
+      (_userDataService.calcTotalStampCount() * 8.6).toStringAsFixed(2);
+
   String get total =>
-      "CHF 8.60 × ${_userDataService.calcTotalStampCount()} = CHF ${(_userDataService.calcTotalStampCount() * 8.6).toStringAsFixed(2)}";
+      "CHF 8.60 × ${_userDataService.calcTotalStampCount()} = CHF $price";
 
   void pay() async {
-    await _dialogService.showDialog(
-        title: "Twint", buttonTitle: "OK", cancelTitle: "Abbrechen");
-    _navigationService.navigateToPdfDownloaderView();
+    var pay = await _dialogService.showDialog(
+      title: "Twint",
+      description: "CHF $price",
+      buttonTitle: "Bezahlen",
+      cancelTitle: "Abbrechen",
+    );
+
+    if (pay!.confirmed) {
+      _navigationService.navigateToPdfDownloaderView();
+    }
   }
 
   void salePoints() {

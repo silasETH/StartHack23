@@ -53,12 +53,12 @@ class _HomeState extends State<Home> {
           processImage(inputImage);
         },
       ),
-      if (code != 0)
-        Center(
-          child: Badge(
-            label: Text("Recognized code: ${code}"),
-          ),
-        )
+      // if (code != 0)
+      //   Center(
+      //     child: Badge(
+      //       label: Text("Recognized code: ${code}"),
+      //     ),
+      //   )
     ]);
   }
 
@@ -78,7 +78,7 @@ class _HomeState extends State<Home> {
                     children: [
                       Text(
                         "3",
-                        style: TextStyle(fontSize: 42, color: Colors.white),
+                        style: TextStyle(fontSize: 100, color: Colors.white),
                       ),
                       SizedBox(height: 10),
                       Text(

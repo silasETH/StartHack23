@@ -108,7 +108,7 @@ class CartView extends StackedView<CartViewModel> {
                         padding: const EdgeInsets.all(smallSize),
                         child: const Center(
                           child: Text(
-                            "Bezahlen",
+                            "Online Kaufen",
                             style: TextStyle(
                               fontSize: 18.0,
                               color: Colors.white,
