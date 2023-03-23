@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitDown,
     ]);
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Sperrgut Stadt St. Gallen',
       theme: Theme.of(context).copyWith(
           primaryColor: kcPrimaryColor,
           focusColor: kcPrimaryColor,

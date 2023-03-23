@@ -93,6 +93,17 @@ class PdfDownloaderViewModel extends BaseViewModel {
                           fontSize: 18, fontWeight: pw.FontWeight.bold)),
                   pw.Text(str2, style: const pw.TextStyle(fontSize: 17)),
                   pw.Text(str3, style: const pw.TextStyle(fontSize: 17)),
+                  pw.SizedBox(height: 25),
+                  pw.Container(
+                      width: 180,
+                      height: 46,
+                      padding: const pw.EdgeInsets.all(10),
+                      decoration: pw.BoxDecoration(
+                          border:
+                              pw.Border.all(width: 1, color: PdfColors.black)),
+                      child: pw.Text(
+                          "1. Etikette zuschneiden \n2. Gut sichtbar befestigen",
+                          style: const pw.TextStyle(color: PdfColors.black))),
                 ],
               ),
             ),
