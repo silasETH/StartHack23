@@ -15,61 +15,129 @@ class HomeView extends StackedView<HomeViewModel> {
     Widget? child,
   ) {
     return Scaffold(
-      appBar: AppBar(title: Text("AppBar")),
+      appBar: AppBar(
+          title: const Text(
+            'Sperrgut Stadt St. Gallen',
+            style: TextStyle(
+              color: kcDarkGreyColor,
+              fontWeight: FontWeight.bold,
+          ),),
+          leading: const Padding(
+            padding: EdgeInsets.fromLTRB(8, 0, 0, 0),
+            child: Image(image: AssetImage('lib/assets/logo_sg.png')),
+          ),
+        backgroundColor: Colors.white,
+        actions: const [
+          Padding(
+            padding: EdgeInsets.fromLTRB(0, 0, 12, 0),
+            child: Icon(Icons.info_outline, color: kcDarkGreyColor, size: 30,),
+          ),
+        ],
+        bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(4.0),
+            child: Container(
+              color: kcPrimaryColor,
+              height: 2.0,
+            ),
+        )
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25.0),
           child: Center(
             child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                verticalSpaceLarge,
-                Column(
-                  children: [
-                    const Text(
-                      'Hello, MICHAEL!',
-                      style: TextStyle(
-                        fontSize: 35,
-                        fontWeight: FontWeight.w900,
-                      ),
-                    ),
-                    verticalSpaceMedium,
-                    MaterialButton(
-                      color: Colors.black,
-                      onPressed: viewModel.incrementCounter,
-                      child: Text(
-                        viewModel.counterLabel,
-                        style: const TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ],
-                ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    MaterialButton(
-                      color: kcDarkGreyColor,
-                      child: const Text(
-                        'Show Dialog',
-                        style: TextStyle(
-                          color: Colors.white,
+                children: [
+                Expanded(
+                  child: MaterialButton(
+                    padding: const EdgeInsets.all(20),
+                    color: Colors.white,
+                    onPressed: () {},
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: const [
+                        Icon(Icons.add, color: kcDarkGreyColor, size: 50,),
+                        verticalSpaceSmall,
+                        Text(
+                          'Sperrgut anmelden',
+                          style: TextStyle(color: kcDarkGreyColor, fontSize: 20),
+                          textAlign: TextAlign.center,
                         ),
-                      ),
-                      onPressed: viewModel.showDialog,
+                      ],
                     ),
-                    MaterialButton(
-                      color: kcDarkGreyColor,
-                      child: const Text(
-                        'Show Bottom Sheet',
-                        style: TextStyle(
-                          color: Colors.white,
+                  ),
+                ),
+                horizontalSpaceMedium,
+                Expanded(
+                  child: MaterialButton(
+                    padding: const EdgeInsets.all(20),
+                    color: Colors.white,
+                    onPressed: () {},
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: const [
+                        Icon(Icons.add, color: kcDarkGreyColor, size: 50,),
+                        verticalSpaceSmall,
+                        Text(
+                          'Sperrgut anmelden',
+                          style: TextStyle(color: kcDarkGreyColor, fontSize: 20),
+                          textAlign: TextAlign.center,
                         ),
-                      ),
-                      onPressed: viewModel.showBottomSheet,
+                      ],
                     ),
-                  ],
-                )
+                  ),
+                ),
+                ]),
+                verticalSpaceMedium,
+                Row(
+                children: [
+                Expanded(
+                  child: MaterialButton(
+                    padding: const EdgeInsets.all(20),
+                    color: Colors.white,
+                    onPressed: () {},
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: const [
+                        Icon(Icons.add, color: kcDarkGreyColor, size: 50,),
+                        verticalSpaceSmall,
+                        Text(
+                          'Sperrgut anmelden',
+                          style: TextStyle(color: kcDarkGreyColor, fontSize: 20),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                horizontalSpaceMedium,
+                Expanded(
+                  child: MaterialButton(
+                    padding: const EdgeInsets.all(20),
+                    color: Colors.white,
+                    onPressed: () {},
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: const [
+                        Icon(Icons.add, color: kcDarkGreyColor, size: 50,),
+                        verticalSpaceSmall,
+                        Text(
+                          'Sperrgut anmelden',
+                          style: TextStyle(color: kcDarkGreyColor, fontSize: 20),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                ],),
+                verticalSpaceLarge
               ],
             ),
           ),
