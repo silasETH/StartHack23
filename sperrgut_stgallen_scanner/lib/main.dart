@@ -59,6 +59,12 @@ class _HomeState extends State<Home> {
       //       label: Text("Recognized code: ${code}"),
       //     ),
       //   )
+      /*if (code != 0)
+        Center(
+          child: Badge(
+            label: Text("Recognized code: ${code}"),
+          ),
+        )*/
     ]);
   }
 
@@ -98,10 +104,68 @@ class _HomeState extends State<Home> {
                           ))
                     ],
                   )))));
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => ConfirmationScreen()));
     }
     _isBusy = false;
     if (mounted) {
       setState(() {});
     }
+  }
+}
+
+class ConfirmationScreen extends StatelessWidget {
+  const ConfirmationScreen({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+        child: Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [
+                Color.fromRGBO(0, 179, 60, 1),
+                Color.fromRGBO(0, 102, 34, 1),
+              ],
+            )),
+            // color: Colors.green,
+            child: Padding(
+              padding: const EdgeInsets.all(50.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  SizedBox(height: 1),
+                  Container(
+                      child: Column(children: [
+                    Text(
+                      "3",
+                      style: TextStyle(fontSize: 100, color: Colors.white),
+                    ),
+                    SizedBox(height: 24),
+                    Text(
+                      "Marken",
+                      style: TextStyle(fontSize: 30, color: Colors.white),
+                    ),
+                  ])),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width - 30,
+                    height: 50,
+                    child: MaterialButton(
+                        onPressed: () {
+                          Navigator.of(context).popUntil((route) => route.isFirst);;
+                        },
+                        color: Colors.white,
+                        child: Text(
+                          'Close',
+                          style: TextStyle(fontSize: 18, color: Colors.black),
+                        )),
+                  )
+                ],
+              ),
+            )));
   }
 }
