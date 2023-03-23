@@ -37,7 +37,7 @@ class PdfDownloaderView extends StackedView<PdfDownloaderViewModel> {
               child: MaterialButton(
                 padding: const EdgeInsets.all(20),
                 color: Colors.white,
-                onPressed: () => openFile("/data/user/0/com.example.sperrgut_stgallen/cache/example.pdf"),
+                onPressed: () async => openFile(await viewModel.makePdf()),
                 child: SizedBox(
                   height: 120,
                   width: 300,
@@ -75,7 +75,6 @@ class PdfDownloaderView extends StackedView<PdfDownloaderViewModel> {
       PdfDownloaderViewModel();
 
   Future openFile(String filepath) async {
-    // print(filepath);
     await OpenFilex.open(filepath);
   }
 }
