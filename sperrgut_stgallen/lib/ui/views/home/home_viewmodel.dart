@@ -47,4 +47,8 @@ class HomeViewModel extends BaseViewModel {
   void info() {
     _navigationService.navigateToInfoView();
   }
+
+  void receipts() {
+    _navigationService.navigateToPdfDownloaderView();
+  }
 }

@@ -5,7 +5,7 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:flutter/material.dart' as _i11;
+import 'package:flutter/material.dart' as _i12;
 import 'package:flutter/material.dart';
 import 'package:sperrgut_stgallen/ui/views/home/home_view.dart' as _i2;
 import 'package:sperrgut_stgallen/ui/views/info/info_view.dart' as _i10;
@@ -14,6 +14,8 @@ import 'package:sperrgut_stgallen/ui/views/mattress_size_select/mattress_size_se
     as _i6;
 import 'package:sperrgut_stgallen/ui/views/other_item_size_select/other_item_size_select_view.dart'
     as _i8;
+import 'package:sperrgut_stgallen/ui/views/pdf_downloader/pdf_downloader_view.dart'
+    as _i11;
 import 'package:sperrgut_stgallen/ui/views/sofa_size_select/sofa_size_select_view.dart'
     as _i5;
 import 'package:sperrgut_stgallen/ui/views/startup/startup_view.dart' as _i3;
@@ -22,7 +24,7 @@ import 'package:sperrgut_stgallen/ui/views/type_select/type_select_view.dart'
 import 'package:sperrgut_stgallen/ui/views/weight_select/weight_select_view.dart'
     as _i7;
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i12;
+import 'package:stacked_services/stacked_services.dart' as _i13;
 
 class Routes {
   static const homeView = '/home-view';
@@ -43,6 +45,8 @@ class Routes {
 
   static const infoView = '/info-view';
 
+  static const pdfDownloaderView = '/pdf-downloader-view';
+
   static const all = <String>{
     homeView,
     startupView,
@@ -53,6 +57,7 @@ class Routes {
     otherItemSizeSelectView,
     mapView,
     infoView,
+    pdfDownloaderView,
   };
 }
 
@@ -94,68 +99,79 @@ class StackedRouter extends _i1.RouterBase {
       Routes.infoView,
       page: _i10.InfoView,
     ),
+    _i1.RouteDef(
+      Routes.pdfDownloaderView,
+      page: _i11.PdfDownloaderView,
+    ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
     _i2.HomeView: (data) {
-      return _i11.MaterialPageRoute<dynamic>(
+      return _i12.MaterialPageRoute<dynamic>(
         builder: (context) => const _i2.HomeView(),
         settings: data,
         maintainState: false,
       );
     },
     _i3.StartupView: (data) {
-      return _i11.MaterialPageRoute<dynamic>(
+      return _i12.MaterialPageRoute<dynamic>(
         builder: (context) => const _i3.StartupView(),
         settings: data,
         maintainState: false,
       );
     },
     _i4.TypeSelectView: (data) {
-      return _i11.MaterialPageRoute<dynamic>(
+      return _i12.MaterialPageRoute<dynamic>(
         builder: (context) => const _i4.TypeSelectView(),
         settings: data,
         maintainState: false,
       );
     },
     _i5.SofaSizeSelectView: (data) {
-      return _i11.MaterialPageRoute<dynamic>(
+      return _i12.MaterialPageRoute<dynamic>(
         builder: (context) => const _i5.SofaSizeSelectView(),
         settings: data,
         maintainState: false,
       );
     },
     _i6.MattressSizeSelectView: (data) {
-      return _i11.MaterialPageRoute<dynamic>(
+      return _i12.MaterialPageRoute<dynamic>(
         builder: (context) => const _i6.MattressSizeSelectView(),
         settings: data,
         maintainState: false,
       );
     },
     _i7.WeightSelectView: (data) {
-      return _i11.MaterialPageRoute<dynamic>(
+      return _i12.MaterialPageRoute<dynamic>(
         builder: (context) => const _i7.WeightSelectView(),
         settings: data,
         maintainState: false,
       );
     },
     _i8.OtherItemSizeSelectView: (data) {
-      return _i11.MaterialPageRoute<dynamic>(
+      return _i12.MaterialPageRoute<dynamic>(
         builder: (context) => const _i8.OtherItemSizeSelectView(),
         settings: data,
         maintainState: false,
       );
     },
     _i9.MapView: (data) {
-      return _i11.MaterialPageRoute<dynamic>(
+      return _i12.MaterialPageRoute<dynamic>(
         builder: (context) => const _i9.MapView(),
         settings: data,
         maintainState: false,
       );
     },
     _i10.InfoView: (data) {
-      return _i11.MaterialPageRoute<dynamic>(
+      return _i12.MaterialPageRoute<dynamic>(
         builder: (context) => const _i10.InfoView(),
+        settings: data,
+        maintainState: false,
+      );
+    },
+    _i11.PdfDownloaderView: (data) {
+      return _i12.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i11.PdfDownloaderView(),
         settings: data,
         maintainState: false,
       );
@@ -168,7 +184,7 @@ class StackedRouter extends _i1.RouterBase {
   Map<Type, _i1.StackedRouteFactory> get pagesMap => _pagesMap;
 }
 
-extension NavigatorStateExtension on _i12.NavigationService {
+extension NavigatorStateExtension on _i13.NavigationService {
   Future<dynamic> navigateToHomeView([
     int? routerId,
     bool preventDuplicates = true,
@@ -295,6 +311,20 @@ extension NavigatorStateExtension on _i12.NavigationService {
         transition: transition);
   }
 
+  Future<dynamic> navigateToPdfDownloaderView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.pdfDownloaderView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
   Future<dynamic> replaceWithHomeView([
     int? routerId,
     bool preventDuplicates = true,
@@ -415,6 +445,20 @@ extension NavigatorStateExtension on _i12.NavigationService {
         transition,
   ]) async {
     return replaceWith<dynamic>(Routes.infoView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithPdfDownloaderView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.pdfDownloaderView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

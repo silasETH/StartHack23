@@ -68,7 +68,7 @@ class MapView extends StackedView<MapViewModel> {
                 ),
               ),
             ),
-          const Image(image: AssetImage('lib/assets/mocked_map.png'))
+            const Image(image: AssetImage('lib/assets/mocked_map.png'))
           ],
         ),
       ),

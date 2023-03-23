@@ -76,7 +76,7 @@ class HomeView extends StackedView<HomeViewModel> {
                       child: HomeScreenButton(
                         label: 'Quittungen',
                         icon: Icons.receipt_long_sharp,
-                        onPressedFunction: () {},
+                        onPressedFunction: viewModel.receipts,
                       ),
                     ),
                   ]),

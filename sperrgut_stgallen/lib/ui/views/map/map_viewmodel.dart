@@ -5,7 +5,6 @@ import '../../../app/app.locator.dart';
 import '../../../app/app.router.dart';
 
 class MapViewModel extends BaseViewModel {
-
   final _navigationService = locator<NavigationService>();
 
   void pop() {
