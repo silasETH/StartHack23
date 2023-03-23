@@ -18,9 +18,16 @@ class TypeSelectViewModel extends BaseViewModel {
     _navigationService.navigateToMattressSizeSelectView();
   }
 
-  void selectTrashBag() {}
+  void selectTrashBag() {
+    _userDataService.setItemType(CartItemType.trashBin);
+    _userDataService.tryAddingItemToCart();
+    _navigationService.navigateToCartView();
+  }
 
-  void selectOther() {}
+  void selectOther() {
+    _userDataService.setItemType(CartItemType.other);
+    _navigationService.navigateToOtherItemSizeSelectView();
+  }
 
   void back() {
     _navigationService.back();
