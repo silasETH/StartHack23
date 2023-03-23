@@ -83,7 +83,7 @@ class UserDataService {
     if(currentCartItem.type == CartItemType.trashBag) {
       currentCartItem.bigItem = false;
     }
-    currentCartItem.code = [0, 1, 2, 3, 4, 5];
+    currentCartItem.code = CartItem.itemToCode(currentCartItem);
     cart.add(currentCartItem);
     currentCartItem = CartItem();
     saveToDisk();
@@ -164,6 +164,46 @@ class CartItem {
   void save(IOSink io) {
     io.add([type.index, bigItem ? 1 : 0, weightClass]);
     io.add(code);
+  }
+
+  static final List<int> forbiddenToSanitized = [0, 2, 5, 6, 7, 8];
+  static final List<int> sanitizedToForbidden = [0, 0, 1, 0, 0, 2, 3, 4, 5, 0];
+  static final List<int> numberPair = [6, 5, 4, 3, 2, 1];
+  static final List<bool> forbidden = [false, true, false, true, true, false, false, false, false, true];
+
+  static List<int> itemToCode(CartItem item)
+  {
+    List<int> result = [item.type.index, item.bigItem ? 1 : 0, item.weightClass];
+    result = result.expand((e) => [e, numberPair[e]]).map((e) => forbiddenToSanitized[e]).toList();
+    return result;
+  }
+
+  static bool isCodeValid(List<int> code)
+  {
+    if(code.length != 6) {
+      return false;
+    }
+    if(code.any((e) => forbidden[e])) {
+      return false;
+    }
+    code = code.map((e) => sanitizedToForbidden[e]).toList();
+    for(int i = 0; i < 6; i+=2) {
+      if(code[i] != numberPair[code[i + 1]]) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  static CartItem codeToItem(List<int> code)
+  {
+    assert(isCodeValid(code));
+    code = code.map((e) => sanitizedToForbidden[e]).toList();
+    CartItem result = CartItem();
+    result.type = CartItemType.values[code[0] % 4];
+    result.bigItem = (code[1] % 2) == 0 ? false : true;
+    result.weightClass = code[2] % 3;
+    return result;
   }
 
   String codeAsString()
