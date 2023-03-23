@@ -5,9 +5,10 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:flutter/material.dart' as _i10;
+import 'package:flutter/material.dart' as _i11;
 import 'package:flutter/material.dart';
 import 'package:sperrgut_stgallen/ui/views/home/home_view.dart' as _i2;
+import 'package:sperrgut_stgallen/ui/views/info/info_view.dart' as _i10;
 import 'package:sperrgut_stgallen/ui/views/map/map_view.dart' as _i9;
 import 'package:sperrgut_stgallen/ui/views/mattress_size_select/mattress_size_select_view.dart'
     as _i6;
@@ -21,7 +22,7 @@ import 'package:sperrgut_stgallen/ui/views/type_select/type_select_view.dart'
 import 'package:sperrgut_stgallen/ui/views/weight_select/weight_select_view.dart'
     as _i7;
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i11;
+import 'package:stacked_services/stacked_services.dart' as _i12;
 
 class Routes {
   static const homeView = '/home-view';
@@ -40,6 +41,8 @@ class Routes {
 
   static const mapView = '/map-view';
 
+  static const infoView = '/info-view';
+
   static const all = <String>{
     homeView,
     startupView,
@@ -49,6 +52,7 @@ class Routes {
     weightSelectView,
     otherItemSizeSelectView,
     mapView,
+    infoView,
   };
 }
 
@@ -86,61 +90,72 @@ class StackedRouter extends _i1.RouterBase {
       Routes.mapView,
       page: _i9.MapView,
     ),
+    _i1.RouteDef(
+      Routes.infoView,
+      page: _i10.InfoView,
+    ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
     _i2.HomeView: (data) {
-      return _i10.MaterialPageRoute<dynamic>(
+      return _i11.MaterialPageRoute<dynamic>(
         builder: (context) => const _i2.HomeView(),
         settings: data,
         maintainState: false,
       );
     },
     _i3.StartupView: (data) {
-      return _i10.MaterialPageRoute<dynamic>(
+      return _i11.MaterialPageRoute<dynamic>(
         builder: (context) => const _i3.StartupView(),
         settings: data,
         maintainState: false,
       );
     },
     _i4.TypeSelectView: (data) {
-      return _i10.MaterialPageRoute<dynamic>(
+      return _i11.MaterialPageRoute<dynamic>(
         builder: (context) => const _i4.TypeSelectView(),
         settings: data,
         maintainState: false,
       );
     },
     _i5.SofaSizeSelectView: (data) {
-      return _i10.MaterialPageRoute<dynamic>(
+      return _i11.MaterialPageRoute<dynamic>(
         builder: (context) => const _i5.SofaSizeSelectView(),
         settings: data,
         maintainState: false,
       );
     },
     _i6.MattressSizeSelectView: (data) {
-      return _i10.MaterialPageRoute<dynamic>(
+      return _i11.MaterialPageRoute<dynamic>(
         builder: (context) => const _i6.MattressSizeSelectView(),
         settings: data,
         maintainState: false,
       );
     },
     _i7.WeightSelectView: (data) {
-      return _i10.MaterialPageRoute<dynamic>(
+      return _i11.MaterialPageRoute<dynamic>(
         builder: (context) => const _i7.WeightSelectView(),
         settings: data,
         maintainState: false,
       );
     },
     _i8.OtherItemSizeSelectView: (data) {
-      return _i10.MaterialPageRoute<dynamic>(
+      return _i11.MaterialPageRoute<dynamic>(
         builder: (context) => const _i8.OtherItemSizeSelectView(),
         settings: data,
         maintainState: false,
       );
     },
     _i9.MapView: (data) {
-      return _i10.MaterialPageRoute<dynamic>(
+      return _i11.MaterialPageRoute<dynamic>(
         builder: (context) => const _i9.MapView(),
+        settings: data,
+        maintainState: false,
+      );
+    },
+    _i10.InfoView: (data) {
+      return _i11.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i10.InfoView(),
         settings: data,
         maintainState: false,
       );
@@ -153,7 +168,7 @@ class StackedRouter extends _i1.RouterBase {
   Map<Type, _i1.StackedRouteFactory> get pagesMap => _pagesMap;
 }
 
-extension NavigatorStateExtension on _i11.NavigationService {
+extension NavigatorStateExtension on _i12.NavigationService {
   Future<dynamic> navigateToHomeView([
     int? routerId,
     bool preventDuplicates = true,

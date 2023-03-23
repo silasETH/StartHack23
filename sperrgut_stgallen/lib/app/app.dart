@@ -1,16 +1,17 @@
+import 'package:sperrgut_stgallen/services/user_data_service.dart';
 import 'package:sperrgut_stgallen/ui/bottom_sheets/notice/notice_sheet.dart';
 import 'package:sperrgut_stgallen/ui/dialogs/info_alert/info_alert_dialog.dart';
 import 'package:sperrgut_stgallen/ui/views/home/home_view.dart';
+import 'package:sperrgut_stgallen/ui/views/info/info_view.dart';
+import 'package:sperrgut_stgallen/ui/views/map/map_view.dart';
+import 'package:sperrgut_stgallen/ui/views/mattress_size_select/mattress_size_select_view.dart';
+import 'package:sperrgut_stgallen/ui/views/other_item_size_select/other_item_size_select_view.dart';
+import 'package:sperrgut_stgallen/ui/views/sofa_size_select/sofa_size_select_view.dart';
 import 'package:sperrgut_stgallen/ui/views/startup/startup_view.dart';
+import 'package:sperrgut_stgallen/ui/views/type_select/type_select_view.dart';
+import 'package:sperrgut_stgallen/ui/views/weight_select/weight_select_view.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:sperrgut_stgallen/ui/views/type_select/type_select_view.dart';
-import 'package:sperrgut_stgallen/ui/views/sofa_size_select/sofa_size_select_view.dart';
-import 'package:sperrgut_stgallen/ui/views/mattress_size_select/mattress_size_select_view.dart';
-import 'package:sperrgut_stgallen/ui/views/weight_select/weight_select_view.dart';
-import 'package:sperrgut_stgallen/ui/views/other_item_size_select/other_item_size_select_view.dart';
-import 'package:sperrgut_stgallen/services/user_data_service.dart';
-import 'package:sperrgut_stgallen/ui/views/map/map_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -23,6 +24,7 @@ import 'package:sperrgut_stgallen/ui/views/map/map_view.dart';
     MaterialRoute(page: WeightSelectView),
     MaterialRoute(page: OtherItemSizeSelectView),
     MaterialRoute(page: MapView),
+    MaterialRoute(page: InfoView),
 // @stacked-route
   ],
   dependencies: [

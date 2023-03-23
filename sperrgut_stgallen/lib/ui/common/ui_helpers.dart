@@ -19,6 +19,12 @@ const Widget verticalSpaceMedium = SizedBox(height: mediumSize);
 const Widget verticalSpaceLarge = SizedBox(height: largeSize);
 const Widget verticalSpaceMassive = SizedBox(height: massiveSize);
 
+const EdgeInsetsGeometry paddingTiny = EdgeInsets.all(_tinySize);
+const EdgeInsetsGeometry paddingSmall = EdgeInsets.all(_smallSize);
+const EdgeInsetsGeometry paddingMedium = EdgeInsets.all(_mediumSize);
+const EdgeInsetsGeometry paddingLarge = EdgeInsets.all(_largeSize);
+const EdgeInsetsGeometry paddingMassive = EdgeInsets.all(_massiveSize);
+
 Widget spacedDivider = Column(
   children: const <Widget>[
     verticalSpaceMedium,
