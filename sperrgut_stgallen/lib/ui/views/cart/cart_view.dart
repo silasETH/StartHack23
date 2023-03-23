@@ -23,25 +23,31 @@ class CartView extends StackedView<CartViewModel> {
       ),
       body: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(8.0, 16, 0, 0),
-                child: Text(
+          Padding(
+            padding: const EdgeInsets.fromLTRB(
+                mediumSize, mediumSize, mediumSize, 0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                Text(
                   "Bezeichnung",
-                  style: Theme.of(context).textTheme.titleMedium,
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: kcPrimaryColor,
+                    fontWeight: FontWeight.normal,
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 16, 8, 0),
-                child: Text(
+                Text(
                   "Marken",
-                  style: Theme.of(context).textTheme.titleMedium,
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: kcPrimaryColor,
+                    fontWeight: FontWeight.normal,
+                  ),
                   textAlign: TextAlign.end,
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           Expanded(
             child: CartItems(
@@ -80,17 +86,13 @@ class CartView extends StackedView<CartViewModel> {
                       style: TextStyle(
                         fontSize: 18,
                         shadows: [
-                          Shadow(
-                              color: kcDarkGreyColor,
-                              offset: Offset(0, -5))
+                          Shadow(color: kcDarkGreyColor, offset: Offset(0, -5))
                         ],
                         color: Colors.transparent,
-                        decoration:
-                        TextDecoration.underline,
+                        decoration: TextDecoration.underline,
                         decorationColor: kcDarkGreyColor,
                         decorationThickness: 2,
-                        decorationStyle:
-                        TextDecorationStyle.solid,
+                        decorationStyle: TextDecorationStyle.solid,
                       ),
                     ),
                   ),
@@ -149,7 +151,7 @@ class CartItems extends StatelessWidget {
             Row(
               children: [
                 SizedBox(
-                  width: 150,
+                  width: 120,
                   child: Text(
                     cartItemText.title ?? "Sperrgut",
                     style: Theme.of(context).textTheme.bodyLarge,
