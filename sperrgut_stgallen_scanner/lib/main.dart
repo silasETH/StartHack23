@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_ml_kit_example/vision_detector_views/camera_view.dart';
 import 'package:google_ml_kit_example/vision_detector_views/text_view.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
@@ -13,6 +14,8 @@ Future<void> main() async {
 
   cameras = await availableCameras();
 
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   runApp(MyApp());
 }
 
@@ -58,15 +61,19 @@ class _HomeState extends State<Home> {
             unselectedLabelColor: Color(0xFFE00025),
             tabs: [
               Tab(
-                  icon: Icon(
-                Icons.camera_alt_outlined,
-                color: Colors.black,
-              )),
+                icon: Icon(
+                  Icons.camera_alt_outlined,
+                  color: Color(0xFF1A1B1E),
+                  size: 25,
+                ),
+              ),
               Tab(
-                  icon: Icon(
-                Icons.text_fields_outlined,
-                color: Colors.black,
-              )),
+                icon: Icon(
+                  Icons.edit_outlined,
+                  color: Color(0xFF1A1B1E),
+                  size: 25,
+                ),
+              ),
             ],
           ),
           title: const Text(
