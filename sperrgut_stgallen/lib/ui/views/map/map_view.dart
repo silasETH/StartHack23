@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sperrgut_stgallen/ui/common/custom_appbar.dart';
 import 'package:stacked/stacked.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../common/ui_helpers.dart';
 import 'map_viewmodel.dart';
@@ -29,11 +30,11 @@ class MapView extends StackedView<MapViewModel> {
                 style: Theme.of(context).textTheme.displayLarge,
               ),
             ),
-            const Expanded(
+            Expanded(
               child: Padding(
-                padding: EdgeInsets.all(10),
-                child: Image(
-                  image: AssetImage('lib/assets/mocked_map.png'),
+                padding: const EdgeInsets.all(10),
+                child: WebViewWidget(
+                  controller: viewModel.controller,
                 ),
               ),
             )
