@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
     ]);
     return MaterialApp(
       title: 'Sperrgut Stadt St. Gallen',
+      debugShowCheckedModeBanner: false,
       theme: Theme.of(context).copyWith(
           primaryColor: kcPrimaryColor,
           focusColor: kcPrimaryColor,

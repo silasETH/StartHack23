@@ -52,6 +52,10 @@ class _HomeState extends State<Home> {
       child: Scaffold(
         appBar: AppBar(
           bottom: const TabBar(
+            dividerColor: Color(0xFFE00025),
+            indicatorColor: Color(0xFFE00025),
+            labelColor: Color(0xFFE00025),
+            unselectedLabelColor: Color(0xFFE00025),
             tabs: [
               Tab(
                   icon: Icon(
@@ -97,23 +101,18 @@ class _HomeState extends State<Home> {
                 processImage(inputImage);
               },
             ),
-            TextView(),
+            TextView(
+              onSubmitted: (text) => processText(text),
+            ),
           ],
         ),
       ),
     );
   }
 
-  Future<void> processImage(InputImage inputImage) async {
-    if (!_canProcess) return;
-    if (_isBusy) return;
-    _isBusy = true;
-    final recognizedText = await _textRecognizer.processImage(inputImage);
-    List<int> code = recognizedText.text
-        .replaceAll(' ', '')
-        .codeUnits
-        .map((e) => e - 48)
-        .toList();
+  void processText(String textCode) {
+    List<int> code =
+        textCode.replaceAll(' ', '').codeUnits.map((e) => e - 48).toList();
     if (code.length == 6 &&
         code.every((e) => e >= 0 && e < 10) &&
         CartItem.isCodeValid(code)) {
@@ -121,6 +120,14 @@ class _HomeState extends State<Home> {
       Navigator.of(context)
           .push(MaterialPageRoute(builder: (context) => ConfirmationScreen()));
     }
+  }
+
+  Future<void> processImage(InputImage inputImage) async {
+    if (!_canProcess) return;
+    if (_isBusy) return;
+    _isBusy = true;
+    final recognizedText = await _textRecognizer.processImage(inputImage);
+    processText(recognizedText.text);
     _isBusy = false;
     if (mounted) {
       setState(() {});
