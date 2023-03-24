@@ -194,9 +194,6 @@ class CartItem {
   {
     final random = Random();
     List<int> result = [item.type.index, item.bigItem ? 1 : 0, item.weightClass];
-    if(result[0] < 2 && random.nextInt(2) == 0) {
-      result[0] += 4;
-    }
     result[1] += random.nextInt(3) * 2;
     result[2] += random.nextInt(2) * 3;
     result = result.expand((e) => [e, numberPair[e]]).map((e) => forbiddenToSanitized[e]).toList();
@@ -228,7 +225,7 @@ class CartItem {
     assert(isCodeValid(code));
     code = code.map((e) => sanitizedToForbidden[e]).toList();
     CartItem result = CartItem();
-    result.type = CartItemType.values[code[0] % 4];
+    result.type = CartItemType.values[code[0] % 5];
     result.bigItem = (code[2] % 2) == 0 ? false : true;
     result.weightClass = code[4] % 3;
     result.code = code;

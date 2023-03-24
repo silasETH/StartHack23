@@ -197,9 +197,6 @@ class CartItem {
       item.bigItem ? 1 : 0,
       item.weightClass
     ];
-    if (result[0] < 2 && random.nextInt(2) == 0) {
-      result[0] += 4;
-    }
     result[1] += random.nextInt(3) * 2;
     result[2] += random.nextInt(2) * 3;
     result = result
@@ -229,9 +226,9 @@ class CartItem {
     assert(isCodeValid(code));
     code = code.map((e) => sanitizedToForbidden[e]).toList();
     CartItem result = CartItem();
-    result.type = CartItemType.values[code[0] % 4];
-    result.bigItem = (code[1] % 2) == 0 ? false : true;
-    result.weightClass = code[2] % 3;
+    result.type = CartItemType.values[code[0] % 5];
+    result.bigItem = (code[2] % 2) == 0 ? false : true;
+    result.weightClass = code[4] % 3;
     return result;
   }
 
