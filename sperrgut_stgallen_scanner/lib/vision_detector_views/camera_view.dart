@@ -81,40 +81,6 @@ class _CameraViewState extends State<CameraView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          title: const Text(
-            'Sperrgut-Scanner St. Gallen',
-            style: TextStyle(
-              fontSize: 18.0,
-              color: Color(0xFF1A1B1E),
-              fontWeight: FontWeight.bold,
-            ),
-            maxLines: 1,
-          ),
-          leading: const Padding(
-            padding: EdgeInsets.fromLTRB(12, 0, 0, 0),
-            child: Image(image: AssetImage('assets/img/logo_sg.png')),
-          ),
-          backgroundColor: Colors.white,
-          actions: [],
-          bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(4.0),
-            child: Container(
-              color: Color(0xFFE00025),
-              height: 2.0,
-            ),
-          )),
-      body: _body(),
-    );
-  }
-
-  Widget _body() {
-    Widget body = _liveFeedBody();
-    return body;
-  }
-
-  Widget _liveFeedBody() {
     if (_controller?.value.isInitialized == false) {
       return Container();
     }
