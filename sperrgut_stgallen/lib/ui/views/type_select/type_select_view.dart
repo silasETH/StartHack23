@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:sperrgut_stgallen/ui/common/app_colors.dart';
 import 'package:sperrgut_stgallen/ui/common/custom_appbar.dart';
@@ -30,35 +31,34 @@ class TypeSelectView extends StackedView<TypeSelectViewModel> {
               style: Theme.of(context).textTheme.displayLarge,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(mediumSize),
-            child: Column(
-              children: [
-                ListButton(
-                  onPressed: viewModel.selectSofa,
-                  icon: Icons.weekend_outlined,
-                  text: "Sofa",
-                ),
-                ListButton(
-                  onPressed: viewModel.selectMattress,
-                  icon: Icons.hotel_outlined,
-                  text: "Matratze",
-                ),
-                ListButton(
-                  onPressed: viewModel.selectTrashBag,
-                  icon: Icons.delete_outlined,
-                  text: "Inoffizieller Abfallsack",
-                ),
-                ListButton(
-                  onPressed: viewModel.selectOther,
-                  icon: Icons.more_horiz_outlined,
-                  text: "Sonstiges Sperrgut",
-                ),
-              ],
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(mediumSize),
+              child: ListView(
+                children: [
+                  ListButton(
+                    onPressed: viewModel.selectSofa,
+                    icon: Icons.weekend_outlined,
+                    text: "Sofa",
+                  ),
+                  ListButton(
+                    onPressed: viewModel.selectMattress,
+                    icon: Icons.hotel_outlined,
+                    text: "Matratze",
+                  ),
+                  ListButton(
+                    onPressed: viewModel.selectTrashBag,
+                    icon: Icons.delete_outlined,
+                    text: "Inoffizieller Abfallsack",
+                  ),
+                  ListButton(
+                    onPressed: viewModel.selectOther,
+                    icon: Icons.more_horiz_outlined,
+                    text: "Sonstiges Sperrgut",
+                  ),
+                ],
+              ),
             ),
-          ),
-          const Expanded(
-            child: SizedBox(),
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(
@@ -84,15 +84,17 @@ class TypeSelectView extends StackedView<TypeSelectViewModel> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: const [
-                          Text(
+                          AutoSizeText(
                             "Weitergeben statt Verbrennen",
                             style: TextStyle(
                                 fontWeight: FontWeight.w300, fontSize: 18),
+                            maxLines: 1,
                           ),
                           verticalSpaceSmall,
-                          Text(
+                          AutoSizeText(
                             "Abgeholtes Sperrgut wird restlos verbrannt. Überprüfen Sie, ob die Ware nicht weitergegeben werden kann, um Ressourcen zu sparen.",
                             style: TextStyle(fontSize: 14),
+                            maxLines: 4,
                           ),
                         ],
                       ),
